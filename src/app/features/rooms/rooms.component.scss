@@ -1,0 +1,189 @@
+$gold: #D4AF37; $gold-light: #E8CC6A; $gold-dark: #B8960C; $forest-green: #1F5E3B; $dark-green: #0A1F12; $white: #FFFFFF; $cream: #FAF7F0; $charcoal: #1A1A1A; $dark-gray: #555555; $medium-gray: #9E9E9E; $light-gray: #F5F5F5;
+$font-display: 'Playfair Display', Georgia, serif; $font-body: 'Montserrat', sans-serif; $transition: 0.3s ease; $shadow-xl: 0 16px 60px rgba(0,0,0,0.20); $bp-md: 768px; $bp-lg: 1024px;
+
+.overline { color: $gold; font-family: $font-body; letter-spacing: 0.25em; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 12px; }
+.gold-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, $gold, transparent); border: none; margin: 16px auto; display: block; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; font-family: $font-body; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all $transition; text-decoration: none; }
+.btn-primary { background: linear-gradient(135deg, $gold, $gold-dark); color: $dark-green; &:hover { background: linear-gradient(135deg, $gold-light, $gold); transform: translateY(-1px); } }
+.btn-outline-gold { background: transparent; color: $gold; border: 2px solid $gold; &:hover { background: $gold; color: $dark-green; } }
+.btn-sm { padding: 8px 18px; font-size: 0.75rem; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; @media (min-width: 1280px) { padding: 0 48px; } }
+.section { padding: 60px 0; @media (min-width: $bp-lg) { padding: 80px 0; } }
+
+.page-hero {
+  position: relative; min-height: 55vh; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; padding-top: 80px;
+  &__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,31,18,0.75), rgba(10,31,18,0.55)); }
+  &__content { position: relative; z-index: 1; padding: 60px 24px; }
+  &__title { font-family: $font-display; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; color: $white; margin: 0 0 12px; }
+  &__subtitle { font-family: $font-display; font-size: 1.1rem; color: rgba(255,255,255,0.8); font-style: italic; margin: 0; }
+
+  &--rooms {
+    background-position: center 40%;
+  }
+}
+
+.rooms-message {
+  background: rgba($gold, 0.1); border-left: 3px solid $gold; padding: 14px 24px; display: flex; align-items: center; gap: 10px; font-family: $font-body; font-size: 0.875rem; color: $charcoal;
+  mat-icon { color: $gold; }
+}
+
+.rooms-filter-section { background: $white; border-bottom: 1px solid rgba($gold, 0.15); padding: 20px 0; position: sticky; top: 80px; z-index: 100; }
+
+.rooms-filter {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+
+  &__btn {
+    padding: 8px 20px; font-family: $font-body; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba($gold, 0.3); background: transparent; color: $dark-gray; border-radius: 20px; cursor: pointer; transition: all $transition;
+    &:hover { border-color: $gold; color: $forest-green; }
+    &.active { background: $forest-green; color: $white; border-color: $forest-green; }
+  }
+}
+
+.rooms-count { font-family: $font-body; font-size: 0.85rem; color: $medium-gray; margin-bottom: 28px; }
+
+.rooms-intro {
+  padding: 32px 0 0;
+
+  &__card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: rgba($gold, 0.08);
+    border: 1px solid rgba($gold, 0.22);
+    border-radius: 12px;
+
+    > mat-icon {
+      color: $gold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    strong {
+      display: block;
+      font-family: $font-display;
+      font-size: 1.05rem;
+      color: $charcoal;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $dark-gray;
+      line-height: 1.7;
+    }
+  }
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, $gold, $gold-light, $gold);
+  margin: 0 auto 20px;
+  border: none;
+  display: block;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+
+  h2 {
+    font-family: $font-display;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    color: $charcoal;
+    margin-bottom: 16px;
+  }
+}
+
+.rooms-grid {
+  display: grid; grid-template-columns: 1fr; gap: 32px;
+  @media (min-width: $bp-md) { grid-template-columns: repeat(2, 1fr); }
+
+  &--types {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+.room-card {
+  background: $white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform $transition, box-shadow $transition; display: flex; flex-direction: column;
+  &:hover { transform: translateY(-6px); box-shadow: $shadow-xl; }
+
+  &__image-wrap { position: relative; aspect-ratio: 16/10; overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; transition: transform 0.5s ease; }
+    &:hover img { transform: scale(1.04); }
+  }
+
+  &__tag { position: absolute; top: 12px; left: 12px; padding: 4px 12px; font-family: $font-body; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px;
+    &--featured { background: $gold; color: $dark-green; }
+  }
+
+  &__rating { position: absolute; top: 12px; right: 12px; background: rgba(10,31,18,0.85); color: $gold; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 4px; backdrop-filter: blur(4px);
+    mat-icon { font-size: 14px; width: 14px; height: 14px; }
+  }
+
+  &__qty { position: absolute; bottom: 12px; left: 12px; background: rgba(10,31,18,0.85); color: $white; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 5px; backdrop-filter: blur(4px);
+    mat-icon { font-size: 14px; width: 14px; height: 14px; color: $gold; }
+  }
+
+  &__body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+
+  &__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+
+  &__type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; color: $gold; font-family: $font-body; }
+
+  &__view { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: $medium-gray; font-family: $font-body;
+    mat-icon { font-size: 13px; width: 13px; height: 13px; }
+  }
+
+  &__title { font-family: $font-display; font-size: 1.3rem; font-weight: 600; color: $charcoal; margin-bottom: 8px; }
+
+  &__best-for {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: $forest-green;
+    font-weight: 600;
+    margin-bottom: 8px;
+
+    mat-icon { font-size: 15px; width: 15px; height: 15px; color: $gold; }
+  }
+
+  &__desc { font-size: 0.875rem; color: $dark-gray; line-height: 1.7; margin-bottom: 16px; flex: 1; }
+
+  &__specs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+
+  &__spec { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: $medium-gray;
+    mat-icon { font-size: 14px; width: 14px; height: 14px; color: $gold; }
+  }
+
+  &__amenities { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+
+  &__amenity-chip { padding: 3px 10px; background: rgba($gold,0.08); border: 1px solid rgba($gold,0.2); border-radius: 20px; font-size: 0.7rem; color: $dark-gray; font-family: $font-body;
+    &--more { background: rgba($forest-green,0.08); border-color: rgba($forest-green,0.2); color: $forest-green; }
+  }
+
+  &__footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid rgba($gold,0.15); flex-wrap: wrap; gap: 12px; }
+
+  &__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px; }
+  &__price-from { font-size: 0.7rem; color: $medium-gray; font-family: $font-body; }
+  &__price-amount { font-family: $font-display; font-size: 1.6rem; font-weight: 700; color: $forest-green; }
+  &__price-per { font-size: 0.75rem; color: $medium-gray; font-family: $font-body; }
+  &__price-note {
+    flex: 0 0 100%;
+    font-size: 0.7rem;
+    color: $gold-dark;
+    font-family: $font-body;
+    letter-spacing: 0.04em;
+  }
+
+  &__actions { display: flex; gap: 8px; }
+}
+
+.rooms-empty { text-align: center; padding: 80px; color: $medium-gray;
+  mat-icon { font-size: 48px; width: 48px; height: 48px; display: block; margin: 0 auto 16px; }
+  p { font-family: $font-body; font-size: 1rem; }
+}

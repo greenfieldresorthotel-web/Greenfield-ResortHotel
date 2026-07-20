@@ -1,0 +1,220 @@
+<section class="booking-hero">
+  <div class="booking-hero__overlay"></div>
+  <div class="booking-hero__content">
+    <span class="overline">Reserve Your Sanctuary</span>
+    <h1 class="booking-hero__title">Book Your Stay</h1>
+    <div class="gold-line"></div>
+  </div>
+</section>
+
+<section class="booking-section">
+  <div class="container">
+    <div class="booking-layout">
+
+      <!-- Form -->
+      <div class="booking-form-card" [appReveal]="0" appRevealType="left">
+        <h2 class="booking-form-card__title">Guest Reservation</h2>
+        <p class="booking-form-card__subtitle">Complete the form below and our team will confirm your reservation within 2 hours.</p>
+
+        <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form" novalidate>
+
+          <!-- Personal Details -->
+          <fieldset class="booking-form__fieldset">
+            <legend class="booking-form__legend">Personal Details</legend>
+
+            <div class="booking-form__row">
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="guestName" placeholder="e.g. Alexandra Johnson">
+                <mat-icon matSuffix>person</mat-icon>
+                @if (getError('guestName')) {
+                  <mat-error>{{ getError('guestName') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="booking-form__row booking-form__row--two">
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Email Address</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="your@email.com">
+                <mat-icon matSuffix>email</mat-icon>
+                @if (getError('email')) {
+                  <mat-error>{{ getError('email') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phone" placeholder="+1 234 567 8900">
+                <mat-icon matSuffix>phone</mat-icon>
+                @if (getError('phone')) {
+                  <mat-error>{{ getError('phone') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </fieldset>
+
+          <!-- Stay Details -->
+          <fieldset class="booking-form__fieldset">
+            <legend class="booking-form__legend">Stay Details</legend>
+
+            <div class="booking-form__row">
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Room Type</mat-label>
+                <mat-select formControlName="roomId">
+                  @for (room of rooms(); track room.id) {
+                    <mat-option [value]="room.id">
+                      {{ room.name }} — ₱{{ room.price | number:'1.0-0' }}/night
+                    </mat-option>
+                  }
+                </mat-select>
+                <mat-icon matSuffix>hotel</mat-icon>
+                @if (getError('roomId')) {
+                  <mat-error>{{ getError('roomId') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="booking-form__row booking-form__row--two">
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Check-in Date</mat-label>
+                <input matInput [matDatepicker]="checkInPicker" formControlName="checkIn" [min]="today" readonly>
+                <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
+                <mat-datepicker #checkInPicker></mat-datepicker>
+                @if (getError('checkIn')) {
+                  <mat-error>{{ getError('checkIn') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Check-out Date</mat-label>
+                <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOut" [min]="tomorrow" readonly>
+                <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+                <mat-datepicker #checkOutPicker></mat-datepicker>
+                @if (getError('checkOut')) {
+                  <mat-error>{{ getError('checkOut') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="booking-form__row booking-form__row--two">
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Adults</mat-label>
+                <mat-select formControlName="adults">
+                  @for (n of [1,2,3,4,5,6]; track n) {
+                    <mat-option [value]="n">{{ n }} {{ n === 1 ? 'Adult' : 'Adults' }}</mat-option>
+                  }
+                </mat-select>
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Children</mat-label>
+                <mat-select formControlName="children">
+                  @for (n of [0,1,2,3,4]; track n) {
+                    <mat-option [value]="n">{{ n }} {{ n === 1 ? 'Child' : 'Children' }}</mat-option>
+                  }
+                </mat-select>
+                <mat-icon matSuffix>child_care</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div class="booking-form__row">
+              <mat-form-field appearance="outline" class="booking-form__field">
+                <mat-label>Special Requests (optional)</mat-label>
+                <textarea matInput formControlName="specialRequests" rows="4"
+                  placeholder="Floor preference (1st or 2nd), dietary needs, special occasions..."></textarea>
+                <mat-icon matSuffix>edit_note</mat-icon>
+              </mat-form-field>
+            </div>
+          </fieldset>
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg booking-form__submit"
+            [disabled]="submitting()">
+            @if (submitting()) {
+              <span class="booking-form__spinner"></span>
+              Processing...
+            } @else {
+              <mat-icon>check_circle</mat-icon>
+              Confirm Reservation
+            }
+          </button>
+
+          <p class="booking-form__note">
+            <mat-icon>lock</mat-icon>
+            Your data is secure. No payment is required at this stage.
+          </p>
+
+        </form>
+      </div>
+
+      <!-- Summary Sidebar -->
+      <div class="booking-summary" [appReveal]="1" appRevealType="right">
+        <div class="booking-summary__card">
+          <h3 class="booking-summary__title">Reservation Summary</h3>
+          <hr class="booking-summary__divider">
+
+          @if (selectedRoom(); as room) {
+            <div class="booking-summary__room">
+              <img [src]="room.images[0]" [alt]="room.name" class="booking-summary__room-img">
+              <div>
+                <div class="booking-summary__room-type">{{ room.typeLabel | uppercase }}</div>
+                <div class="booking-summary__room-name">{{ room.name }}</div>
+                <div class="booking-summary__room-view">
+                  <mat-icon>layers</mat-icon>{{ room.floors }} · {{ room.quantity }} rooms
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (nights() > 0) {
+            <div class="booking-summary__breakdown">
+              <div class="booking-summary__row">
+                <span>Rate per Night</span>
+                <span>₱{{ (selectedRoom()?.price ?? 0) | number:'1.0-0' }}</span>
+              </div>
+              <div class="booking-summary__row">
+                <span>Duration</span>
+                <span>{{ nights() }} {{ nights() === 1 ? 'Night' : 'Nights' }}</span>
+              </div>
+              <div class="booking-summary__row">
+                <span>Guests</span>
+                <span>{{ bookingForm.get('adults')?.value }} Adults, {{ bookingForm.get('children')?.value }} Children</span>
+              </div>
+            </div>
+
+            <div class="booking-summary__total">
+              <span>Estimated Total</span>
+              <span class="booking-summary__total-amount">₱<span [appCountUp]="totalPrice()" [countUpDuration]="600">0</span></span>
+            </div>
+          } @else {
+            <div class="booking-summary__placeholder">
+              <mat-icon>hotel</mat-icon>
+              <p>Select a room and dates to see your price summary.</p>
+            </div>
+          }
+
+          <div class="booking-summary__perks">
+            <div class="booking-summary__perk">
+              <mat-icon>check</mat-icon><span>Free cancellation (48h before arrival)</span>
+            </div>
+            <div class="booking-summary__perk">
+              <mat-icon>check</mat-icon><span>No credit card required</span>
+            </div>
+            <div class="booking-summary__perk">
+              <mat-icon>check</mat-icon><span>Best Rate Guarantee</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-help">
+          <p>Need assistance with your reservation?</p>
+          <a routerLink="/contact" class="btn btn-outline-gold">Contact Concierge</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

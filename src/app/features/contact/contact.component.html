@@ -1,0 +1,77 @@
+<!-- Hero -->
+<section class="page-hero" style="background-image: url('https://picsum.photos/seed/contact-hero/1920/700')">
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <span class="overline">We're Here to Help</span>
+    <h1 class="page-hero__title">Contact Us</h1>
+    <div class="gold-line"></div>
+    <p class="page-hero__subtitle">Our concierge team is available 24 hours a day</p>
+  </div>
+</section>
+
+<!-- Contact Layout -->
+<section class="contact-section section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <div class="contact-intro" [appReveal]="0" appRevealType="up">
+        <span class="overline">Get in Touch</span>
+        <h2 class="contact-intro__title">We'd Love to Hear from You</h2>
+        <hr class="divider">
+        <p class="contact-intro__text">
+          Whether you're planning your first visit or returning for another stay, reach us by phone, email, or Facebook. Our team is happy to help with reservations, special arrangements, and any enquiries you may have.
+        </p>
+      </div>
+
+      <div class="contact-info__cards">
+        @for (info of contactInfo; track info.label; let i = $index) {
+          <div class="contact-info-card" [appReveal]="i" appRevealType="up">
+            <div class="contact-info-card__icon">
+              <mat-icon>{{ info.icon }}</mat-icon>
+            </div>
+            <div class="contact-info-card__body">
+              <div class="contact-info-card__label">{{ info.label }}</div>
+              @if (info.href) {
+                <a [href]="info.href" class="contact-info-card__value contact-info-card__value--link">{{ info.value }}</a>
+              } @else {
+                <div class="contact-info-card__value">{{ info.value }}</div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="contact-map" [appReveal]="2" appRevealType="up">
+        <iframe
+          [src]="mapEmbedUrl"
+          title="Green Field Resort location map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+        <a
+          [href]="resort.map.directionsUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-map__directions btn btn-dark btn-sm">
+          <mat-icon>directions</mat-icon>
+          Get Directions
+        </a>
+      </div>
+
+      <div class="contact-directions" [appReveal]="3" appRevealType="up">
+        <h4 class="contact-directions__title">How to Get Here</h4>
+        @for (dir of resort.directions; track dir.from) {
+          <div class="contact-directions__item">
+            <mat-icon>{{ dir.icon }}</mat-icon>
+            <div>
+              <strong>{{ dir.from }}</strong>
+              <span>{{ dir.detail }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

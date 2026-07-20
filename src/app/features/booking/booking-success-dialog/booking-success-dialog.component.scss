@@ -1,0 +1,49 @@
+$gold: #D4AF37; $gold-light: #E8CC6A; $gold-dark: #B8960C; $forest-green: #1F5E3B; $dark-green: #0A1F12; $white: #FFFFFF; $cream: #FAF7F0; $charcoal: #1A1A1A; $dark-gray: #555555; $medium-gray: #9E9E9E;
+$font-display: 'Playfair Display', Georgia, serif; $font-body: 'Montserrat', sans-serif; $transition: 0.3s ease;
+
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 32px; font-family: $font-body; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all $transition; text-decoration: none; }
+.btn-dark { background: $forest-green; color: $white; &:hover { background: $dark-green; } }
+.btn-outline-gold { background: transparent; color: $gold; border: 2px solid $gold; &:hover { background: $gold; color: $dark-green; } }
+
+.success-dialog {
+  padding: 40px 32px;
+  text-align: center;
+
+  &__icon-wrap {
+    width: 80px; height: 80px; background: rgba($forest-green, 0.1); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+    border: 2px solid rgba($forest-green, 0.2);
+    animation: successIconPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  &__icon { font-size: 44px; width: 44px; height: 44px; color: $forest-green; }
+
+  &__title { font-family: $font-display; font-size: 1.75rem; color: $charcoal; margin-bottom: 12px; opacity: 0; animation: successFadeUp 0.5s ease 0.15s both; }
+
+  &__subtitle { font-size: 0.95rem; color: $dark-gray; line-height: 1.6; margin-bottom: 24px; opacity: 0; animation: successFadeUp 0.5s ease 0.25s both; }
+
+  &__details { background: $cream; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: left; opacity: 0; animation: successFadeUp 0.5s ease 0.35s both; }
+
+  &__detail { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba($gold,0.15);
+    &:last-child { border-bottom: none; }
+  }
+
+  &__detail-label { font-size: 0.78rem; color: $medium-gray; font-family: $font-body; }
+  &__detail-value { font-family: $font-body; font-size: 0.875rem; font-weight: 600; color: $charcoal;
+    &--gold { color: $forest-green; font-size: 1rem; }
+  }
+
+  &__note { font-size: 0.8rem; color: $dark-gray; line-height: 1.6; margin-bottom: 28px; opacity: 0; animation: successFadeUp 0.5s ease 0.45s both; }
+
+  &__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: successFadeUp 0.5s ease 0.55s both; }
+}
+
+@keyframes successIconPop {
+  from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes successFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

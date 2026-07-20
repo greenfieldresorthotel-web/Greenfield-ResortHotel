@@ -1,0 +1,13 @@
+@if (loadingService.isLoading()) {
+  <div
+    class="spinner-overlay"
+    role="status"
+    aria-label="Loading"
+    animate.enter="spinner-overlay--enter"
+    animate.leave="spinner-overlay--leave">
+    <div class="spinner-container">
+      <div class="spinner-ring"></div>
+      <div class="spinner-logo">G</div>
+    </div>
+  </div>
+}

@@ -1,0 +1,103 @@
+$gold: #D4AF37; $gold-light: #E8CC6A; $gold-dark: #B8960C; $forest-green: #1F5E3B; $dark-green: #0A1F12; $white: #FFFFFF; $cream: #FAF7F0; $charcoal: #1A1A1A; $dark-gray: #555555; $medium-gray: #9E9E9E;
+$font-display: 'Playfair Display', Georgia, serif; $font-body: 'Montserrat', sans-serif; $transition: 0.3s ease;
+
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 32px; font-family: $font-body; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all $transition; text-decoration: none; }
+.btn-primary { background: linear-gradient(135deg, $gold, $gold-dark); color: $dark-green; box-shadow: 0 4px 20px rgba(212,175,55,0.35); &:hover { background: linear-gradient(135deg, $gold-light, $gold); transform: translateY(-2px); } }
+.btn-outline-gold { background: transparent; color: $gold; border: 2px solid $gold; &:hover { background: $gold; color: $dark-green; } }
+.btn-lg { padding: 16px 44px; font-size: 0.9375rem; }
+
+.not-found {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $dark-green 0%, $forest-green 60%, rgba($gold, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba($gold, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 70% 30%, rgba($white, 0.03) 0%, transparent 50%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+  }
+
+  &__code {
+    font-family: $font-display;
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 700;
+    color: rgba($gold, 0.15);
+    line-height: 1;
+    margin-bottom: -20px;
+    letter-spacing: -0.05em;
+  }
+
+  &__leaf {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 12px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba($gold, 0.3));
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: $white;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  &__divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, $gold, $gold-light, $gold);
+    border: none;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  &__text {
+    font-size: 1rem;
+    color: rgba($white, 0.75);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  &__links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    a { font-family: $font-body; font-size: 0.875rem; color: rgba($white, 0.5); text-decoration: none; transition: color $transition;
+      &:hover { color: $gold; }
+    }
+
+    span { color: rgba($white, 0.25); }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}

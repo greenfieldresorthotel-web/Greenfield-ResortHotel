@@ -1,0 +1,152 @@
+@if (loading()) {
+  <div class="detail-loading">
+    <div class="detail-loading__ring"></div>
+  </div>
+}
+
+@if (room(); as r) {
+  <!-- Gallery -->
+  <section class="room-gallery">
+    <div class="room-gallery__main">
+      @for (idx of [activeImage()]; track idx) {
+        <img [src]="r.images[idx]" [alt]="r.name" class="animate-fade-in">
+      }
+    </div>
+    <div class="room-gallery__thumbs">
+      @for (img of r.images; track img; let i = $index) {
+        <div
+          class="room-gallery__thumb"
+          [class.active]="activeImage() === i"
+          (click)="setActiveImage(i)">
+          <img [src]="img" [alt]="r.name + ' image ' + (i + 1)">
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="room-breadcrumb container">
+    <a routerLink="/rooms" class="room-breadcrumb__link">
+      <mat-icon>arrow_back</mat-icon> Back to Room Types
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <section class="room-detail section">
+    <div class="container">
+      <div class="room-detail__grid">
+
+        <!-- Info Column -->
+        <div class="room-detail__info" [appReveal]="0" appRevealType="left">
+          <span class="room-detail__type">{{ r.typeLabel | uppercase }}</span>
+          <h1 class="room-detail__title">{{ r.name }}</h1>
+          @if (r.badge) {
+            <span class="room-detail__badge">{{ r.badge }}</span>
+          }
+          <hr class="room-detail__divider">
+          <p class="room-detail__description">{{ r.description }}</p>
+
+          @if (r.assignmentNote) {
+            <div class="room-detail__note">
+              <mat-icon>info</mat-icon>
+              <p>{{ r.assignmentNote }}</p>
+            </div>
+          }
+
+          <!-- Specs -->
+          <div class="room-detail__specs-grid">
+            <div class="room-detail__spec" [appReveal]="0" appRevealType="scale">
+              <mat-icon>person</mat-icon>
+              <div>
+                <div class="room-detail__spec-label">Max Guests</div>
+                <div class="room-detail__spec-value">{{ r.maxGuests }} Guests</div>
+              </div>
+            </div>
+            <div class="room-detail__spec" [appReveal]="1" appRevealType="scale">
+              <mat-icon>king_bed</mat-icon>
+              <div>
+                <div class="room-detail__spec-label">Bed Type</div>
+                <div class="room-detail__spec-value">{{ r.bedType }}</div>
+              </div>
+            </div>
+            <div class="room-detail__spec" [appReveal]="2" appRevealType="scale">
+              <mat-icon>square_foot</mat-icon>
+              <div>
+                <div class="room-detail__spec-label">Room Size</div>
+                <div class="room-detail__spec-value">{{ r.sizeSqm }} sqm</div>
+              </div>
+            </div>
+            <div class="room-detail__spec" [appReveal]="3" appRevealType="scale">
+              <mat-icon>layers</mat-icon>
+              <div>
+                <div class="room-detail__spec-label">Floors</div>
+                <div class="room-detail__spec-value">{{ r.floors }}</div>
+              </div>
+            </div>
+            <div class="room-detail__spec" [appReveal]="4" appRevealType="scale">
+              <mat-icon>meeting_room</mat-icon>
+              <div>
+                <div class="room-detail__spec-label">Available</div>
+                <div class="room-detail__spec-value">{{ r.quantity }} identical rooms</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amenities -->
+          <h3 class="room-detail__section-title">Room Amenities</h3>
+          <div class="room-detail__amenities">
+            @for (amenity of r.amenities; track amenity; let i = $index) {
+              <div class="room-detail__amenity" [appReveal]="i" appRevealType="left">
+                <mat-icon>check_circle</mat-icon>
+                <span>{{ amenity }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Booking Widget -->
+        <div class="room-booking-widget" [appReveal]="1" appRevealType="right">
+          <div class="room-booking-widget__inner">
+            <div class="room-booking-widget__price">
+              <span class="room-booking-widget__from">From</span>
+              <span class="room-booking-widget__amount">₱{{ r.price | number:'1.0-0' }}</span>
+              <span class="room-booking-widget__per">per night</span>
+              @if (r.rateNote) {
+                <span class="room-booking-widget__rate-note">{{ r.rateNote }}</span>
+              }
+            </div>
+            <hr class="room-booking-widget__divider">
+            <div class="room-booking-widget__availability">
+              <mat-icon>check_circle</mat-icon>
+              <span>{{ r.quantity }} rooms · {{ r.floors }}</span>
+            </div>
+            <a
+              routerLink="/contact"
+              [queryParams]="{ subject: 'Room Enquiry: ' + r.name }"
+              class="btn btn-primary btn-lg room-booking-widget__btn">
+              Enquire About This Room
+            </a>
+            <a [href]="resort.phoneHref" class="room-booking-widget__enquire">
+              Or call {{ resort.phone }}
+            </a>
+            <div class="room-booking-widget__perks">
+              <div class="room-booking-widget__perk">
+                <mat-icon>free_breakfast</mat-icon>
+                <span>Complimentary breakfast included</span>
+              </div>
+              <div class="room-booking-widget__perk">
+                <mat-icon>ac_unit</mat-icon>
+                <span>Air-conditioned rooms</span>
+              </div>
+              <div class="room-booking-widget__perk">
+                <mat-icon>wifi</mat-icon>
+                <span>Free Wi-Fi throughout the resort</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+}

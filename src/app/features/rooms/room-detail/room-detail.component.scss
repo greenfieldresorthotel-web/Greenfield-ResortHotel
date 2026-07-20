@@ -1,0 +1,160 @@
+$gold: #D4AF37; $gold-light: #E8CC6A; $gold-dark: #B8960C; $forest-green: #1F5E3B; $dark-green: #0A1F12; $white: #FFFFFF; $cream: #FAF7F0; $charcoal: #1A1A1A; $dark-gray: #555555; $medium-gray: #9E9E9E;
+$font-display: 'Playfair Display', Georgia, serif; $font-body: 'Montserrat', sans-serif; $transition: 0.3s ease; $shadow-xl: 0 16px 60px rgba(0,0,0,0.20); $bp-md: 768px; $bp-lg: 1024px;
+
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 32px; font-family: $font-body; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all $transition; text-decoration: none; width: 100%; justify-content: center; }
+.btn-primary { background: linear-gradient(135deg, $gold, $gold-dark); color: $dark-green; box-shadow: 0 4px 20px rgba(212,175,55,0.35); &:hover { background: linear-gradient(135deg, $gold-light, $gold); transform: translateY(-2px); } }
+.btn-lg { padding: 16px; font-size: 0.9375rem; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; @media (min-width: 1280px) { padding: 0 48px; } }
+.section { padding: 60px 0; @media (min-width: $bp-lg) { padding: 80px 0; } }
+
+.detail-loading { display: flex; align-items: center; justify-content: center; min-height: 60vh;
+  &__ring { width: 48px; height: 48px; border: 3px solid rgba($gold,0.2); border-top-color: $gold; border-radius: 50%; animation: spin 0.9s linear infinite; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.room-gallery {
+  background: $dark-green;
+  padding-top: 80px;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $dark-green;
+    padding: 12px 16px 0;
+    min-height: 280px;
+
+    img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: min(68vh, 640px);
+      object-fit: contain;
+      object-position: center;
+    }
+
+    @media (min-width: $bp-md) {
+      padding: 16px 32px 0;
+      min-height: 360px;
+
+      img {
+        max-height: min(72vh, 680px);
+      }
+    }
+  }
+
+  &__thumbs { display: flex; gap: 4px; padding: 8px 4px 4px; background: $dark-green; overflow-x: auto; }
+
+  &__thumb { flex-shrink: 0; width: 88px; height: 66px; cursor: pointer; opacity: 0.55; transition: opacity $transition; overflow: hidden; border-radius: 4px;
+    img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    &.active, &:hover { opacity: 1; }
+    &.active { outline: 2px solid $gold; }
+  }
+}
+
+.room-breadcrumb { padding: 20px 24px;
+  &__link { display: inline-flex; align-items: center; gap: 6px; font-family: $font-body; font-size: 0.85rem; color: $medium-gray; text-decoration: none; transition: color $transition;
+    mat-icon { font-size: 18px; width: 18px; height: 18px; }
+    &:hover { color: $gold; }
+  }
+}
+
+.room-detail {
+  background: $white;
+
+  &__grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: flex-start;
+    @media (min-width: $bp-lg) { grid-template-columns: 1fr 380px; gap: 60px; }
+  }
+
+  &__type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; color: $gold; font-family: $font-body; display: block; margin-bottom: 8px; }
+
+  &__title { font-family: $font-display; font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: $charcoal; margin-bottom: 12px; }
+
+  &__badge {
+    display: inline-block;
+    padding: 4px 14px;
+    background: rgba($gold, 0.12);
+    border: 1px solid rgba($gold, 0.35);
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $forest-green;
+    margin-bottom: 16px;
+  }
+
+  &__divider { width: 60px; height: 2px; background: linear-gradient(90deg, $gold, $gold-light); border: none; margin: 0 0 24px; display: block; }
+
+  &__description { font-size: 0.95rem; color: $dark-gray; line-height: 1.9; margin-bottom: 24px; }
+
+  &__note {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    background: rgba($gold, 0.08);
+    border: 1px solid rgba($gold, 0.2);
+    border-radius: 8px;
+    margin-bottom: 32px;
+
+    mat-icon { color: $gold; flex-shrink: 0; margin-top: 2px; }
+
+    p { margin: 0; font-size: 0.875rem; color: $dark-gray; line-height: 1.7; }
+  }
+
+  &__specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+
+  &__spec { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: $cream; border-radius: 8px;
+    mat-icon { color: $gold; font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  }
+
+  &__spec-label { font-size: 0.7rem; color: $medium-gray; font-family: $font-body; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  &__spec-value { font-family: $font-body; font-size: 0.875rem; font-weight: 600; color: $charcoal; }
+
+  &__section-title { font-family: $font-display; font-size: 1.25rem; color: $charcoal; margin-bottom: 16px; margin-top: 8px; }
+
+  &__amenities { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  &__amenity { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: $dark-gray;
+    mat-icon { color: $forest-green; font-size: 18px; flex-shrink: 0; }
+  }
+}
+
+.room-booking-widget {
+  position: sticky; top: 100px;
+
+  &__inner { background: $white; border-radius: 16px; box-shadow: $shadow-xl; padding: 32px; border: 1px solid rgba($gold, 0.2); }
+
+  &__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; justify-content: center; margin-bottom: 20px; }
+  &__from { font-size: 0.8rem; color: $medium-gray; }
+  &__amount { font-family: $font-display; font-size: 2.5rem; font-weight: 700; color: $forest-green; }
+  &__per { font-size: 0.8rem; color: $medium-gray; }
+  &__rate-note {
+    flex: 0 0 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: $gold-dark;
+    font-family: $font-body;
+    letter-spacing: 0.04em;
+  }
+
+  &__divider { border: none; border-top: 1px solid rgba($gold,0.2); margin: 20px 0; }
+
+  &__availability { display: flex; align-items: center; gap: 8px; color: $forest-green; font-size: 0.875rem; margin-bottom: 20px; justify-content: center;
+    mat-icon { font-size: 18px; }
+  }
+
+  &__btn { margin-bottom: 16px; }
+
+  &__enquire { display: block; text-align: center; font-family: $font-body; font-size: 0.8rem; color: $medium-gray; text-decoration: none; transition: color $transition; margin-bottom: 24px;
+    &:hover { color: $gold; }
+  }
+
+  &__perks { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid rgba($gold,0.15); }
+
+  &__perk { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; color: $dark-gray; line-height: 1.4;
+    mat-icon { font-size: 16px; color: $gold; flex-shrink: 0; margin-top: 1px; }
+  }
+}

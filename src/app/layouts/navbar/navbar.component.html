@@ -1,0 +1,61 @@
+<header class="navbar" [class.scrolled]="isScrolled()">
+  <div class="navbar__inner">
+
+    <!-- Logo -->
+    <a routerLink="/" class="navbar__logo" (click)="closeMenu()" aria-label="Greenfield Resort Home">
+      <span class="navbar__logo-leaf">🌿</span>
+      <div class="navbar__logo-text">
+        <span class="navbar__logo-name">Green Field</span>
+        <span class="navbar__logo-tagline">RESORT</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="navbar__nav" aria-label="Main navigation">
+      @for (link of navLinks; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+          class="navbar__link"
+          (click)="closeMenu()">
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <!-- Actions -->
+    <div class="navbar__actions">
+      <a routerLink="/contact" class="navbar__book-btn" (click)="closeMenu()">
+        Contact Us
+      </a>
+      <button
+        class="navbar__hamburger"
+        [class.open]="menuOpen()"
+        (click)="toggleMenu()"
+        aria-label="Toggle navigation menu"
+        [attr.aria-expanded]="menuOpen()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="navbar__mobile-menu" [class.open]="menuOpen()" role="navigation" aria-label="Mobile navigation">
+    @for (link of navLinks; track link.path) {
+      <a
+        [routerLink]="link.path"
+        routerLinkActive="mobile-active"
+        [routerLinkActiveOptions]="{ exact: link.exact }"
+        class="navbar__mobile-link"
+        (click)="closeMenu()">
+        {{ link.label }}
+      </a>
+    }
+    <a routerLink="/contact" class="navbar__mobile-book-btn" (click)="closeMenu()">
+      Contact Us
+    </a>
+  </div>
+</header>

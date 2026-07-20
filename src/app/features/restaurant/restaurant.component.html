@@ -1,0 +1,103 @@
+<!-- Hero -->
+<section class="page-hero">
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <span class="overline">Dining Experience</span>
+    <h1 class="page-hero__title">Bar & Restaurant</h1>
+    <div class="gold-line"></div>
+    <p class="page-hero__subtitle">Delight in authentic Filipino flavors, thoughtfully prepared with fresh ingredients in a warm and relaxing atmosphere.</p>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="restaurant-philosophy section">
+  <div class="container">
+    <div class="restaurant-philosophy__grid">
+      <div class="restaurant-philosophy__content" [appReveal]="0" appRevealType="left">
+        <span class="overline">Our Philosophy</span>
+        <h2>Fresh Flavors, Crafted with Care</h2>
+        <hr class="divider">
+        <p>At Green Field Restaurant, we believe that exceptional dining begins with fresh ingredients, skilled preparation, and genuine Filipino hospitality. Our culinary team is dedicated to creating flavorful dishes & beverages that celebrate both local traditions and international favorites, ensuring every meal is as memorable as your stay.</p>
+        <p>Inspired by the rich culture and natural beauty of Bohol, we thoughtfully prepare each dish using carefully selected ingredients to deliver quality, freshness, and authentic taste. From hearty Filipino specialties to international classics, every plate is crafted with attention to detail and a passion for excellent food.</p>
+        <p>Whether you're enjoying a leisurely breakfast, a relaxing lunch by the pool, or a delightful dinner with family and friends, Green Field Restaurant offers a welcoming dining experience where great food and warm hospitality come together to create lasting memories.</p>
+      </div>
+      <div class="restaurant-philosophy__chef-card" [appReveal]="1" appRevealType="right">
+        <img src="assets/drink.jpeg" alt="Executive Chef" class="restaurant-philosophy__chef-img">
+        <div class="restaurant-philosophy__chef-info">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Food Menu -->
+<section class="food-menu section-light">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <span class="overline">Our Menu</span>
+      <h2>Food Menu</h2>
+      <hr class="divider">
+      <p>Filipino favorites, sizzling specialties, noodles, rice platters, and more — served at Green Field Restaurant.</p>
+    </div>
+
+    <div class="menu-gallery">
+      @for (page of menuPages; track page.id; let i = $index) {
+        <figure class="menu-card" [appReveal]="i" appRevealType="up">
+          <img [src]="page.src" [alt]="page.alt" loading="lazy" decoding="async" />
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Hours & Reservation -->
+<section class="restaurant-info section-dark">
+  <div class="container">
+    <div class="restaurant-info__grid">
+      <div class="restaurant-info__hours" [appReveal]="0" appRevealType="up">
+        <span class="overline">Dining Hours</span>
+        <h2 class="restaurant-info__title">Opening Times</h2>
+        <hr class="divider">
+        <div class="restaurant-info__schedule">
+          <div class="restaurant-info__meal">
+            <mat-icon>wb_sunny</mat-icon>
+            <div>
+              <div class="restaurant-info__meal-name">Breakfast</div>
+              <div class="restaurant-info__meal-time">7:30 AM – 9:30 AM</div>
+            </div>
+          </div>
+          <div class="restaurant-info__meal">
+            <mat-icon>restaurant</mat-icon>
+            <div>
+              <div class="restaurant-info__meal-name">Lunch</div>
+              <div class="restaurant-info__meal-time">12:00 PM – 3:00 PM</div>
+            </div>
+          </div>
+          <div class="restaurant-info__meal">
+            <mat-icon>nights_stay</mat-icon>
+            <div>
+              <div class="restaurant-info__meal-name">Dinner</div>
+              <div class="restaurant-info__meal-time">6:00 PM – 10:00 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="restaurant-info__reservation">
+        <span class="overline">Reserve a Table</span>
+        <h2 class="restaurant-info__title">Dining Reservations</h2>
+        <hr class="divider">
+        <p class="restaurant-info__text">
+          To ensure the most personal experience, we recommend reserving your table at least 24 hours in advance.
+          For private dining and special occasions, please contact our concierge team directly.
+        </p>
+        <div class="restaurant-info__cta">
+          <a routerLink="/contact" class="btn btn-primary btn-lg">Reserve a Table</a>
+          <a href="tel:+1800GREENFIELD" class="btn btn-secondary btn-lg">
+            <mat-icon>phone</mat-icon>
+            Call Concierge
+          </a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>

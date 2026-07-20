@@ -1,0 +1,91 @@
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__container">
+
+      <!-- Brand Column -->
+      <div class="footer__brand" [appReveal]="0">
+        <div class="footer__logo">
+          <span class="footer__logo-leaf">🌿</span>
+          <div>
+            <div class="footer__logo-name">Green Field</div>
+            <div class="footer__logo-tagline">RESORT</div>
+          </div>
+        </div>
+        <p class="footer__tagline">
+          Where ancient forests meet contemporary luxury. An award-winning sanctuary
+          designed for those who seek the extraordinary.
+        </p>
+        <div class="footer__social">
+          @for (s of socialLinks; track s.label) {
+            <a [href]="s.href" class="footer__social-link" [attr.aria-label]="s.label" target="_blank" rel="noopener noreferrer">
+              <mat-icon>{{ s.icon }}</mat-icon>
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer__col" [appReveal]="1">
+        <h4 class="footer__heading">Explore</h4>
+        <ul class="footer__links">
+          @for (link of quickLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path" class="footer__link">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer__col" [appReveal]="2">
+        <h4 class="footer__heading">Contact</h4>
+        <ul class="footer__contact-list">
+          <li class="footer__contact-item">
+            <mat-icon>location_on</mat-icon>
+            <span>{{ resort.address.line1 }}<br>{{ resort.address.line2 }}</span>
+          </li>
+          <li class="footer__contact-item">
+            <mat-icon>phone</mat-icon>
+            <a [href]="resort.phoneHref" class="footer__contact-link">{{ resort.phone }}</a>
+          </li>
+          <li class="footer__contact-item">
+            <mat-icon>email</mat-icon>
+            <a [href]="'mailto:' + resort.email" class="footer__contact-link">{{ resort.email }}</a>
+          </li>
+          <li class="footer__contact-item">
+          </li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <!-- <div class="footer__col">
+        <h4 class="footer__heading">Newsletter</h4>
+        <p class="footer__newsletter-text">
+          Receive exclusive offers and curated experiences from our estate.
+        </p>
+        <form class="footer__newsletter-form" (submit)="$event.preventDefault()">
+          <input
+            type="email"
+            class="footer__newsletter-input"
+            placeholder="Your email address"
+            aria-label="Newsletter email">
+          <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+        </form>
+      </div> -->
+
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__container footer__bottom-inner">
+      <p class="footer__copy">
+        &copy; {{ currentYear }} Green Field Resort &amp; . All rights reserved.
+      </p>
+      <div class="footer__legal">
+        <a routerLink="/contact" class="footer__legal-link">Privacy Policy</a>
+        <a routerLink="/contact" class="footer__legal-link">Terms of Service</a>
+        <a routerLink="/contact" class="footer__legal-link">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>

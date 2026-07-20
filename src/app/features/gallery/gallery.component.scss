@@ -1,0 +1,114 @@
+$gold: #D4AF37; $gold-light: #E8CC6A; $gold-dark: #B8960C; $forest-green: #1F5E3B; $dark-green: #0A1F12; $white: #FFFFFF; $charcoal: #1A1A1A; $dark-gray: #555555; $medium-gray: #9E9E9E;
+$font-display: 'Playfair Display', Georgia, serif; $font-body: 'Montserrat', sans-serif; $transition: 0.3s ease; $bp-md: 768px; $bp-lg: 1024px;
+
+.overline { color: $gold; font-family: $font-body; letter-spacing: 0.25em; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 12px; }
+.gold-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, $gold, transparent); border: none; margin: 16px auto; display: block; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; @media (min-width: 1280px) { padding: 0 48px; } }
+.section { padding: 60px 0; @media (min-width: $bp-lg) { padding: 80px 0; } }
+
+.page-hero {
+  position: relative; min-height: 55vh; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; padding-top: 80px;
+  &__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,31,18,0.75), rgba(10,31,18,0.55)); }
+  &__content { position: relative; z-index: 1; padding: 60px 24px; }
+  &__title { font-family: $font-display; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; color: $white; margin: 0 0 12px; }
+  &__subtitle { font-family: $font-display; font-size: 1.1rem; color: rgba(255,255,255,0.8); font-style: italic; margin: 0; }
+}
+
+.gallery-filter-section { background: $white; border-bottom: 1px solid rgba($gold,0.15); padding: 20px 0; position: sticky; top: 80px; z-index: 100; }
+
+.gallery-filter { position: relative; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  &__pill {
+    position: absolute;
+    background: $forest-green;
+    border-radius: 20px;
+    z-index: 0;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1), top 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  &__btn { position: relative; z-index: 1; padding: 8px 20px; font-family: $font-body; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba($gold,0.3); background: transparent; color: $dark-gray; border-radius: 20px; cursor: pointer; transition: color $transition, border-color $transition;
+    &:hover { border-color: $gold; color: $forest-green; }
+    &.active { color: $white; border-color: $forest-green; }
+  }
+  &__count { margin-left: 4px; font-size: 0.7rem; opacity: 0.7; }
+}
+
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (min-width: $bp-lg) { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+}
+
+.gallery-item {
+  position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 1; cursor: pointer;
+
+  img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  &:hover img { transform: scale(1.08); }
+
+  &__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,31,18,0.8) 0%, transparent 50%); opacity: 0; transition: opacity $transition; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 16px; text-align: center; }
+  &:hover &__overlay { opacity: 1; }
+
+  &__icon { color: $gold; font-size: 32px; width: 32px; height: 32px; margin-bottom: auto; margin-top: auto; }
+
+  &__title { font-family: $font-display; font-size: 0.875rem; color: $white; font-style: italic; margin-bottom: 4px; line-height: 1.3; }
+  &__category { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; color: $gold; }
+
+  &--featured {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+
+    @media (min-width: $bp-lg) { grid-column: span 1; grid-row: span 2; aspect-ratio: auto; }
+  }
+}
+
+.gallery-empty { text-align: center; padding: 80px; color: $medium-gray;
+  mat-icon { font-size: 48px; width: 48px; height: 48px; display: block; margin: 0 auto 16px; opacity: 0.4; }
+  p { font-family: $font-body; font-size: 1rem; }
+}
+
+.lightbox {
+  position: fixed; inset: 0; background: rgba(10,31,18,0.95); z-index: 9000; display: flex; align-items: center; justify-content: center;
+
+  &--enter { animation: lightboxFadeIn 0.3s ease both; }
+  &--leave { animation: lightboxFadeOut 0.25s ease both; }
+
+  &__inner { position: relative; max-width: 90vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; }
+
+  &__image { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+
+  &__close { position: absolute; top: -48px; right: -8px; background: rgba(255,255,255,0.1); border: none; color: $white; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background $transition;
+    &:hover { background: rgba(255,255,255,0.2); }
+    mat-icon { font-size: 20px; }
+  }
+
+  &__nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: none; color: $white; cursor: pointer; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background $transition; z-index: 1;
+    &:hover { background: rgba($gold,0.3); }
+    mat-icon { font-size: 28px; }
+    &--prev { left: -64px; }
+    &--next { right: -64px; }
+  }
+
+  &__caption { display: flex; justify-content: space-between; width: 100%; margin-top: 12px; padding: 0 4px; }
+  &__caption-title { font-family: $font-display; font-size: 0.95rem; color: rgba(255,255,255,0.9); font-style: italic; }
+  &__caption-counter { font-family: $font-body; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lightboxFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.lightbox__inner {
+  animation: lightboxScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes lightboxScaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

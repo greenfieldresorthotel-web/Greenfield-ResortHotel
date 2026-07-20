@@ -1,0 +1,109 @@
+<!-- Hero -->
+<section class="page-hero" style="background-image: url('assets/Aboutimage.jpeg')">
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <span class="overline">Our Legacy</span>
+    <h1 class="page-hero__title">About Green Field</h1>
+    <div class="gold-line"></div>
+    <p class="page-hero__subtitle">Where Nature Meets Hospitality</p>
+  </div>
+</section>
+
+<!-- Stats Strip -->
+<section class="about-stats">
+  <div class="container">
+    <div class="about-stats__grid">
+      @for (stat of stats; track stat.label; let i = $index) {
+        <div class="about-stats__item" [appReveal]="i" appRevealType="scale">
+          <div class="about-stats__value">
+            <span
+              [appCountUp]="stat.value"
+              [countUpSuffix]="stat.suffix"
+              [countUpGrouping]="stat.grouping"
+              [countUpDuration]="1600">0</span>
+          </div>
+          <div class="about-stats__label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="about-story section">
+  <div class="container">
+    <div class="about-story__grid">
+      <div class="about-story__image" [appReveal]="0" appRevealType="left">
+        <img src="assets/homepool.jpeg" alt="Greenfield Estate" loading="lazy">
+        <div class="about-story__image-caption">The Greenfield Resort, est. 2026</div>
+      </div>
+      <div class="about-story__content" [appReveal]="1" appRevealType="right">
+        <span class="overline">Our Story</span>
+        <h2>A New Destination for Relaxation</h2>
+        <hr class="divider">
+        <p>Welcome to Green Field Resort Hotel, a premier inland resort nestled in the serene municipality of Anda, Bohol. Founded in 2026 by <b>Rosamaria R. Bramhall & Denis Alfred Bramhall</b>, the resort was established with a vision of creating a peaceful sanctuary where nature, comfort, and genuine Filipino hospitality come together.</p>
+        <p>Surrounded by lush tropical landscapes and a tranquil atmosphere, Green Field Resort Hotel offers an ideal retreat for couples, families, friends, and travelers seeking relaxation away from the crowds. Whether you're planning a weekend getaway, a family vacation, or a special celebration, our thoughtfully designed accommodations, inviting swimming pools, exceptional dining, and personalized service ensure a memorable experience for every guest.</p>
+        <p>At Green Field Resort Hotel, we believe that true luxury lies in comfort, heartfelt hospitality, and meaningful moments. Every detail of our resort reflects our commitment to providing a welcoming environment where guests can unwind, reconnect with nature, and create lasting memories.</p>
+        <p>We invite you to discover the charm of inland living, experience the warmth of our hospitality, and make Green Field Resort Hotel your home away from home in the countryside of Bohol.</p>
+ 
+        <a routerLink="/rooms" class="btn btn-dark about-story__btn">Explore Our Rooms</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="about-values section-light">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <span class="overline">Our Foundation</span>
+      <h2>Values We Live By</h2>
+      <hr class="divider">
+    </div>
+    <div class="about-values__grid">
+      @for (value of values; track value.title; let i = $index) {
+        <div class="value-card" [appReveal]="i" appRevealType="up">
+          <div class="value-card__icon">
+            <mat-icon>{{ value.icon }}</mat-icon>
+          </div>
+          <h3 class="value-card__title">{{ value.title }}</h3>
+          <p class="value-card__desc">{{ value.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- <section class="about-timeline section-dark">
+  <div class="container">
+    <div class="section-header dark">
+      <span class="overline">Our History</span>
+      <h2>Milestones of Excellence</h2>
+      <hr class="divider">
+    </div>
+    <div class="timeline">
+      @for (item of timeline; track item.year) {
+        <div class="timeline__item">
+          <div class="timeline__year">{{ item.year }}</div>
+          <div class="timeline__dot"></div>
+          <div class="timeline__event">{{ item.event }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section> -->
+
+<!-- CTA -->
+<section class="about-cta">
+  <div class="about-cta__bg">
+    <div class="about-cta__overlay"></div>
+    <div class="about-cta__content" [appReveal]="0" appRevealType="scale">
+      <span class="overline">Be Our Guest</span>
+      <h2 class="about-cta__title">Experience the Nature Yourself</h2>
+      <div class="about-cta__actions">
+        <!-- <a routerLink="/booking" class="btn btn-primary btn-lg">Reserve a Room</a> -->
+        <a routerLink="/contact" class="btn btn-primary btn-lg">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>

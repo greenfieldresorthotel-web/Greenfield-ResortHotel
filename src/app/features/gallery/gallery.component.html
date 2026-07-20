@@ -1,0 +1,101 @@
+<!-- Hero -->
+<section class="page-hero" style="background-image: url('/images/BG/bg8.jpg')">
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <span class="overline">Visual Stories</span>
+    <h1 class="page-hero__title">Gallery</h1>
+    <div class="gold-line"></div>
+    <p class="page-hero__subtitle">A visual journey through the Greenfield estate</p>
+  </div>
+</section>
+
+<!-- Filter -->
+<section class="gallery-filter-section">
+  <div class="container">
+    <div class="gallery-filter">
+      <span
+        class="gallery-filter__pill"
+        [style.left]="pillStyle().left"
+        [style.top]="pillStyle().top"
+        [style.width]="pillStyle().width"
+        [style.height]="pillStyle().height"
+        [style.opacity]="pillStyle().opacity">
+      </span>
+      @for (cat of categories; track cat.value) {
+        <button
+          #filterBtn
+          class="gallery-filter__btn"
+          [class.active]="activeCategory() === cat.value"
+          (click)="setCategory(cat.value)">
+          {{ cat.label }}
+          @if (cat.value !== 'all') {
+            <span class="gallery-filter__count">
+              {{ cat.value === activeCategory() ? filteredItems().length : '' }}
+            </span>
+          }
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Grid -->
+<section class="gallery-section section">
+  <div class="container">
+    <div class="gallery-grid">
+      @for (item of filteredItems(); track item.id; let i = $index) {
+        <div
+          class="gallery-item"
+          [class.gallery-item--featured]="item.featured"
+          [appReveal]="i"
+          appRevealType="scale"
+          (click)="openLightbox(i)">
+          <img [src]="item.image" [alt]="item.title" loading="lazy">
+          <div class="gallery-item__overlay">
+            <mat-icon class="gallery-item__icon">zoom_in</mat-icon>
+            <span class="gallery-item__title">{{ item.title }}</span>
+            <span class="gallery-item__category">{{ item.category | uppercase }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (filteredItems().length === 0) {
+      <div class="gallery-empty">
+        <mat-icon>photo_library</mat-icon>
+        <p>No images in this category.</p>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Lightbox -->
+@if (lightboxOpen()) {
+  <div
+    class="lightbox"
+    (click)="closeLightbox()"
+    animate.enter="lightbox--enter"
+    animate.leave="lightbox--leave">
+    <div class="lightbox__inner" (click)="$event.stopPropagation()">
+      <button class="lightbox__close" (click)="closeLightbox()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button class="lightbox__nav lightbox__nav--prev" (click)="prevImage()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      @for (idx of [lightboxIndex()]; track idx) {
+        <img
+          [src]="filteredItems()[idx].image"
+          [alt]="filteredItems()[idx].title"
+          class="lightbox__image animate-fade-in">
+      }
+      <button class="lightbox__nav lightbox__nav--next" (click)="nextImage()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <div class="lightbox__caption">
+        <span class="lightbox__caption-title">{{ filteredItems()[lightboxIndex()].title }}</span>
+        <span class="lightbox__caption-counter">{{ lightboxIndex() + 1 }} / {{ filteredItems().length }}</span>
+      </div>
+    </div>
+  </div>
+}

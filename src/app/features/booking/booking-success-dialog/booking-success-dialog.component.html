@@ -1,0 +1,38 @@
+<div class="success-dialog">
+  <div class="success-dialog__icon-wrap">
+    <mat-icon class="success-dialog__icon">check_circle</mat-icon>
+  </div>
+  <h2 class="success-dialog__title">Reservation Confirmed!</h2>
+  <p class="success-dialog__subtitle">
+    Thank you, <strong>{{ data.guestName }}</strong>. Your reservation at Greenfield Resort has been received.
+  </p>
+  <div class="success-dialog__details">
+    <div class="success-dialog__detail">
+      <span class="success-dialog__detail-label">Booking Reference</span>
+      <span class="success-dialog__detail-value">{{ data.id }}</span>
+    </div>
+    <div class="success-dialog__detail">
+      <span class="success-dialog__detail-label">Room Type</span>
+      <span class="success-dialog__detail-value">{{ data.roomName }}</span>
+    </div>
+    <div class="success-dialog__detail">
+      <span class="success-dialog__detail-label">Check-in</span>
+      <span class="success-dialog__detail-value">{{ data.checkIn }}</span>
+    </div>
+    <div class="success-dialog__detail">
+      <span class="success-dialog__detail-label">Check-out</span>
+      <span class="success-dialog__detail-value">{{ data.checkOut }}</span>
+    </div>
+    <div class="success-dialog__detail">
+      <span class="success-dialog__detail-label">Estimated Total</span>
+      <span class="success-dialog__detail-value success-dialog__detail-value--gold">₱{{ data.totalPrice?.toLocaleString() }}</span>
+    </div>
+  </div>
+  <p class="success-dialog__note">
+    A confirmation email has been sent to <strong>{{ data.email }}</strong>. Our concierge team will contact you within 2 hours to finalise your reservation.
+  </p>
+  <div class="success-dialog__actions">
+    <a routerLink="/" (click)="close()" class="btn btn-dark">Return to Home</a>
+    <button (click)="close()" class="btn btn-outline-gold">Close</button>
+  </div>
+</div>

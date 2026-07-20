@@ -1,0 +1,119 @@
+<!-- Hero -->
+<section class="pool-hero">
+  <div class="pool-hero__bg" style="background-image: url('assets/nightpool.jpeg')"></div>
+  <div class="pool-hero__overlay"></div>
+  <div class="pool-hero__content">
+    <span class="overline">Aquatic Sanctuary</span>
+    <h1 class="pool-hero__title">The Pool Pool</h1>
+    <div class="gold-line"></div>
+    <p class="pool-hero__subtitle">50 metres of crystalline water suspended above the forest canopy</p>
+    <div class="pool-hero__stats">
+      <div class="pool-hero__stat">
+        <span class="pool-hero__stat-value" [appCountUp]="50" countUpSuffix="m">0</span>
+        <span class="pool-hero__stat-label">Pool Length</span>
+      </div>
+      <div class="pool-hero__stat-divider"></div>
+      <div class="pool-hero__stat">
+        <span class="pool-hero__stat-value" [appCountUp]="29" countUpSuffix="°C">0</span>
+        <span class="pool-hero__stat-label">Year-Round Temperature</span>
+      </div>
+      <div class="pool-hero__stat-divider"></div>
+      <div class="pool-hero__stat">
+        <span class="pool-hero__stat-value" [appCountUp]="8">0</span>
+        <span class="pool-hero__stat-label">Private Rooms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="pool-features section">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <span class="overline">Our Facilities</span>
+      <h2>Everything You Need to Unwind</h2>
+      <hr class="divider">
+    </div>
+    <div class="pool-features__grid">
+      @for (feature of features; track feature.title; let i = $index) {
+        <div class="pool-feature-card" [appReveal]="i" appRevealType="up">
+          <div class="pool-feature-card__icon">
+            <mat-icon>{{ feature.icon }}</mat-icon>
+          </div>
+          <h3 class="pool-feature-card__title">{{ feature.title }}</h3>
+          <p class="pool-feature-card__desc">{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Hours & Rules -->
+<section class="pool-info section-light">
+  <div class="container">
+    <div class="pool-info__grid">
+
+      <!-- Hours -->
+      <div class="pool-info__hours" [appReveal]="0" appRevealType="left">
+        <span class="overline">Operating Hours</span>
+        <h2 class="pool-info__title">When to Swim</h2>
+        <hr class="divider">
+        <div class="pool-info__schedule">
+          <div class="pool-info__time-row">
+            <span class="pool-info__day">Main Pool</span>
+            <span class="pool-info__time">6:00 AM – 10:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules -->
+      <div class="pool-info__rules" [appReveal]="1" appRevealType="right">
+        <span class="overline">Pool Guidelines</span>
+        <h2 class="pool-info__title">For Your Safety &amp; Comfort</h2>
+        <hr class="divider">
+        <ul class="pool-info__rules-list">
+          @for (rule of rules; track rule) {
+            <li class="pool-info__rule">
+              <mat-icon>check_circle_outline</mat-icon>
+              <span>{{ rule }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<!-- <section class="pool-gallery section">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <span class="overline">Pool Gallery</span>
+      <h2>Our Aquatic Sanctuary</h2>
+      <hr class="divider">
+    </div>
+    <div class="pool-gallery__grid">
+      @for (img of galleryImages; track img.src; let i = $index) {
+        <div class="pool-gallery__item" [appReveal]="i" appRevealType="scale">
+          <img [src]="img.src" [alt]="img.alt" loading="lazy">
+          <div class="pool-gallery__item-overlay">
+            <span>{{ img.alt }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section> -->
+
+<!-- CTA -->
+<!-- <section class="pool-cta section-dark">
+  <div class="container">
+    <div class="pool-cta__content">
+      <span class="overline">Reserve Your Spot</span>
+      <h2 class="pool-cta__title">Book a Cabana for Your Stay</h2>
+      <p class="pool-cta__text">Private cabanas include a personal attendant, complimentary refreshments, and exclusive pool sections. Reserve yours when booking your room.</p>
+      <a routerLink="/booking" class="btn btn-primary btn-lg">Book Your Room</a>
+    </div>
+  </div>
+</section> -->

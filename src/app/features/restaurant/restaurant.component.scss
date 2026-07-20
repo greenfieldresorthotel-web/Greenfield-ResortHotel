@@ -1,0 +1,94 @@
+$gold: #D4AF37; $gold-light: #E8CC6A; $gold-dark: #B8960C; $forest-green: #1F5E3B; $dark-green: #0A1F12; $white: #FFFFFF; $cream: #FAF7F0; $charcoal: #1A1A1A; $dark-gray: #555555; $medium-gray: #9E9E9E;
+$font-display: 'Playfair Display', Georgia, serif; $font-body: 'Montserrat', sans-serif; $transition: 0.3s ease; $shadow-xl: 0 16px 60px rgba(0,0,0,0.20); $bp-md: 768px; $bp-lg: 1024px;
+$dark-green: #0A1F12;
+.overline { color: $gold; font-family: $font-body; letter-spacing: 0.25em; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 12px; }
+.divider { width: 60px; height: 2px; background: linear-gradient(90deg, $gold, $gold-light, $gold); margin: 0 auto 24px; border: none; display: block; }
+.gold-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, $gold, transparent); border: none; margin: 16px auto; display: block; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 32px; font-family: $font-body; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all $transition; text-decoration: none; }
+.btn-primary { background: linear-gradient(135deg, $gold, $gold-dark); color: $dark-green; &:hover { background: linear-gradient(135deg, $gold-light, $gold); transform: translateY(-2px); } }
+.btn-secondary { background: transparent; color: $white; border: 2px solid rgba(255,255,255,0.8); &:hover { background: $white; color: $forest-green; } }
+.btn-lg { padding: 16px 44px; font-size: 0.9375rem; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; @media (min-width: 1280px) { padding: 0 48px; } }
+.section { padding: 80px 0; @media (min-width: $bp-lg) { padding: 110px 0; } }
+.section-light { padding: 80px 0; background: $cream; @media (min-width: $bp-lg) { padding: 110px 0; } }
+.section-dark { padding: 80px 0; background: $dark-green; color: $white; @media (min-width: $bp-lg) { padding: 110px 0; } }
+
+.section-header { text-align: center; margin-bottom: 56px;
+  h2 { font-family: $font-display; font-size: clamp(1.75rem, 3.5vw, 3rem); color: $charcoal; margin-bottom: 16px; }
+  p { font-family: $font-body; color: $dark-gray; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+}
+
+.page-hero {
+  position: relative; min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; padding-top: 80px; 
+  &__overlay { position: absolute; inset: 0; background:#0A1F12}
+  &__content { position: relative; z-index: 1; padding: 60px 24px;  }
+  &__title { font-family: $font-display; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 600; color: $white; margin: 0 0 12px; }
+  &__subtitle { font-family: $font-display; font-size: 1.2rem; color: rgba(255,255,255,0.8); font-style: italic; margin: 0; }
+}
+
+.restaurant-philosophy {
+  &__grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; @media (min-width: $bp-lg) { grid-template-columns: 1fr 1fr; gap: 72px; } }
+  &__content {
+    h2 { font-family: $font-display; font-size: clamp(1.5rem, 3vw, 2.25rem); color: $charcoal; margin-bottom: 16px; }
+    p { font-size: 0.95rem; color: $dark-gray; line-height: 1.85; margin-bottom: 16px; }
+    .divider { margin: 0 0 24px; }
+  }
+  &__chef-card { border-radius: 12px; overflow: hidden; box-shadow: $shadow-xl; position: relative; }
+  &__chef-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  &__chef-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px; background: linear-gradient(to top, rgba(10,31,18,0.95), transparent); }
+  &__chef-name { font-family: $font-display; font-size: 1.1rem; color: $white; font-weight: 600; }
+  &__chef-title { font-size: 0.78rem; color: $gold; font-family: $font-body; margin-top: 4px; }
+}
+
+.menu-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+.menu-card {
+  margin: 0;
+  background: $white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba($gold, 0.15);
+  transition: transform $transition, box-shadow $transition;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.restaurant-info {
+  &__grid { display: grid; grid-template-columns: 1fr; gap: 60px; @media (min-width: $bp-lg) { grid-template-columns: 1fr 1fr; } }
+
+  &__title { font-family: $font-display; font-size: clamp(1.5rem, 3vw, 2.25rem); color: $white; margin-bottom: 16px; }
+
+  .divider { margin: 0 0 24px; }
+
+  &__schedule { display: flex; flex-direction: column; gap: 20px; }
+
+  &__meal { display: flex; align-items: flex-start; gap: 14px;
+    mat-icon { color: $gold; font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  }
+
+  &__meal-name { font-family: $font-display; font-size: 1rem; font-weight: 600; color: $white; margin-bottom: 2px; }
+  &__meal-time { font-size: 0.875rem; color: rgba(255,255,255,0.7); }
+
+  &__text { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 32px; }
+
+  &__cta { display: flex; gap: 16px; flex-wrap: wrap; }
+}

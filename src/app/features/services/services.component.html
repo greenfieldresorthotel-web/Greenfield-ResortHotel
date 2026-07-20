@@ -1,0 +1,125 @@
+<!-- Hero -->
+<section class="page-hero" style="background-image: url('assets/homepool.jpeg')">
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <span class="overline">Guest Privileges</span>
+    <h1 class="page-hero__title">Our Services</h1>
+    <div class="gold-line"></div>
+    <p class="page-hero__subtitle">Everything you need for a comfortable and memorable stay in Anda, Bohol</p>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="services-section section">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <span class="overline">What We Offer</span>
+      <h2>Resort Services &amp; Amenities</h2>
+      <hr class="divider">
+      <p>From dining and pool access to events and tour assistance — we take care of the details so you can relax.</p>
+    </div>
+
+    <div class="services-grid">
+      @for (service of services(); track service.id; let i = $index) {
+        <article class="service-card" [appReveal]="i" appRevealType="up">
+          <div class="service-card__icon">
+            <mat-icon>{{ service.icon }}</mat-icon>
+          </div>
+          <h3 class="service-card__title">{{ service.title }}</h3>
+          <p class="service-card__desc">{{ service.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Packages -->
+<section class="packages-section section-light">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <span class="overline">Special Offers</span>
+      <h2>Packages &amp; Celebrations</h2>
+      <hr class="divider">
+      <p>Curated packages for families, couples, teams, and special occasions. Contact us to customize yours.</p>
+    </div>
+
+    <div class="packages-grid">
+      @for (pkg of packages(); track pkg.id; let i = $index) {
+        <article class="package-card luxury-card" [appReveal]="i" appRevealType="scale">
+          <div class="package-card__icon">
+            <mat-icon>{{ pkg.icon }}</mat-icon>
+          </div>
+          <h3 class="package-card__title">{{ pkg.title }}</h3>
+          <p class="package-card__desc">{{ pkg.description }}</p>
+          <ul class="package-card__includes">
+            @for (item of pkg.includes; track item) {
+              <li>
+                <mat-icon>check</mat-icon>
+                <span>{{ item }}</span>
+              </li>
+            }
+          </ul>
+          @if (pkg.priceFrom) {
+            <div class="package-card__price">From ₱{{ pkg.priceFrom | number }} / package</div>
+          }
+          <a routerLink="/contact" [queryParams]="{ subject: 'Package Enquiry: ' + pkg.title }" class="btn btn-outline-gold btn-sm">
+            Enquire Now
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Location CTA -->
+<section class="services-location section-dark">
+  <div class="container">
+    <div class="services-location__grid">
+      <div class="services-location__content" [appReveal]="0" appRevealType="left">
+        <span class="overline">Find Us</span>
+        <h2>Visit Us in Anda, Bohol</h2>
+        <hr class="divider">
+        <p class="services-location__address">
+          <mat-icon>location_on</mat-icon>
+          {{ resort.address.full }}
+        </p>
+        <div class="services-location__directions">
+          @for (dir of resort.directions; track dir.from) {
+            <div class="services-location__direction">
+              <mat-icon>{{ dir.icon }}</mat-icon>
+              <div>
+                <strong>{{ dir.from }}</strong>
+                <span>{{ dir.detail }}</span>
+              </div>
+            </div>
+          }
+        </div>
+        <a [href]="resort.map.directionsUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <mat-icon>directions</mat-icon>
+          Get Directions
+        </a>
+      </div>
+      <div class="services-location__map" [appReveal]="1" appRevealType="right">
+        <iframe
+          [src]="mapEmbedUrl"
+          title="Green Field Resort location map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="services-cta">
+  <div class="services-cta__content" [appReveal]="0" appRevealType="scale">
+    <span class="overline">Need Something Special?</span>
+    <h2>Our Team Is Happy to Help</h2>
+    <p>Reach out for custom packages, event planning, or tour arrangements.</p>
+    <div class="services-cta__actions">
+      <a routerLink="/contact" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
+  </div>
+</section>
