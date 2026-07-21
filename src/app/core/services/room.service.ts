@@ -42,10 +42,10 @@ const ROOM_TYPES: Room[] = [
       'Free Parking'
     ],
     images: [
-      '/images/rooms/3.jpg',
+      '/images/rooms/room24.jpeg',
       '/images/rooms/4.jpg',
       '/images/rooms/1.jpg',
-      '/images/rooms/2.jpg',
+      '/images/rooms/roomshower.jpeg',
       '/images/rooms/5.jpg',
       '/images/rooms/6.jpg',
       '/images/rooms/7.jpg'

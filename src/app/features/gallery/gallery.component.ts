@@ -25,7 +25,7 @@ export class GalleryComponent implements OnInit {
     { label: 'All', value: 'all' },
     { label: 'Rooms & Suites', value: 'rooms' },
     { label: 'Dining', value: 'dining' },
-    { label: 'Pool & Spa', value: 'pool' },
+    { label: 'Pool', value: 'pool' },
     { label: 'Resort', value: 'grounds' }
   ];
 

@@ -7,13 +7,14 @@ import { environment } from '../../../environments/environment';
 
 const MOCK_GALLERY: GalleryItem[] = [
   // Rooms & Suites
-  { id: 'r1', title: 'Deluxe Room', image: '/images/rooms/3.jpg', category: 'rooms', featured: true },
+  { id: 'r1', title: 'Deluxe Room', image: '/images/rooms/room24.jpeg', category: 'rooms', featured: true },
   { id: 'r2', title: 'Deluxe Room Interior', image: '/images/rooms/1.jpg', category: 'rooms' },
   { id: 'r3', title: 'Deluxe Room View', image: '/images/rooms/2.jpg', category: 'rooms' },
   { id: 'r4', title: 'Deluxe Room Bed', image: '/images/rooms/4.jpg', category: 'rooms' },
+  { id: 'r4', title: 'Deluxe Room Bath', image: '/images/rooms/roomsofa.jpeg', category: 'rooms' },
   { id: 'r5', title: 'Deluxe Room Amenities', image: '/images/rooms/5.jpg', category: 'rooms' },
   { id: 'r6', title: 'Deluxe Room Bathroom', image: '/images/rooms/6.jpg', category: 'rooms' },
-  { id: 'r7', title: 'Deluxe Room Balcony', image: '/images/rooms/7.jpg', category: 'rooms' },
+  { id: 'r7', title: 'Deluxe Room Balcony', image: '/images/rooms/roomshower.jpeg', category: 'rooms' },
   { id: 'r8', title: 'Deluxe Room', image: '/images/rooms/room8.jpg', category: 'rooms' },
   { id: 'r9', title: 'Deluxe Room', image: '/images/rooms/room9.jpg', category: 'rooms' },
   { id: 'r10', title: 'Deluxe Room', image: '/images/rooms/room10.jpg', category: 'rooms' },
@@ -29,9 +30,12 @@ const MOCK_GALLERY: GalleryItem[] = [
   { id: 'd7', title: 'Restaurant Seating', image: '/images/dining/dining7.jpg', category: 'dining' },
 
   // Pool
-  { id: 'p1', title: 'Resort Pool', image: '/images/pool/pool1.jpg', category: 'pool', featured: true },
+  { id: 'p1', title: 'Resort Pool', image: '/images/pool/homepool.jpeg', category: 'pool', featured: true },
+  { id: 'p2', title: 'Pool Area', image: '/images/pool/pool20.jpeg', category: 'pool' },
   { id: 'p2', title: 'Pool Area', image: '/images/pool/pool2.jpg', category: 'pool' },
   { id: 'p3', title: 'Poolside Relaxation', image: '/images/pool/pool3.jpg', category: 'pool' },
+  { id: 'p4', title: 'Poolside Relaxation', image: '/images/pool/nightpool.jpeg', category: 'pool' },
+  { id: 'p5', title: 'Poolside Relaxation', image: '/images/pool/hpool1.jpg', category: 'pool' },
 
   // Resort overview (All / Estate Grounds)
   { id: 'b1', title: 'Greenfield Resort', image: '/images/BG/bg1.jpg', category: 'grounds', featured: true },
@@ -41,7 +45,13 @@ const MOCK_GALLERY: GalleryItem[] = [
   { id: 'b5', title: 'Resort Views', image: '/images/BG/bg5.jpg', category: 'grounds' },
   { id: 'b6', title: 'Greenfield Estate', image: '/images/BG/bg6.jpg', category: 'grounds' },
   { id: 'b7', title: 'Resort Surroundings', image: '/images/BG/bg7.jpg', category: 'grounds' },
-  { id: 'b8', title: 'Greenfield Resort', image: '/images/BG/bg8.jpg', category: 'grounds' }
+  { id: 'b8', title: 'Greenfield Resort', image: '/images/BG/bg8.jpg', category: 'grounds' },
+  { id: 'b9', title: 'Greenfield Resort', image: '/images/dining/backdining.jpeg', category: 'grounds' },
+  { id: 'b10', title: 'Greenfield Resort', image: '/images/dining/backdining2.jpeg', category: 'grounds' },
+  { id: 'b11', title: 'Greenfield Resort', image: '/images/dining/resto2.jpeg', category: 'grounds' },
+  { id: 'b12', title: 'Greenfield Resort', image: '/images/guests/outside.jpeg', category: 'grounds' },
+  { id: 'b13', title: 'Greenfield Resort', image: '/images/guests/terrace20.jpeg', category: 'grounds' }
+
 ];
 
 @Injectable({ providedIn: 'root' })

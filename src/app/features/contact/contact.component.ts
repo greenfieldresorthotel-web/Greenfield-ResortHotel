@@ -26,6 +26,5 @@ export class ContactComponent {
     { icon: 'location_on', label: 'Address', value: RESORT_CONFIG.address.full },
     { icon: 'phone', label: 'Reservations', value: RESORT_CONFIG.phone, href: RESORT_CONFIG.phoneHref },
     { icon: 'email', label: 'Email', value: RESORT_CONFIG.email, href: `mailto:${RESORT_CONFIG.email}` },
-    { icon: 'schedule', label: 'Concierge Hours', value: RESORT_CONFIG.hours }
   ];
 }

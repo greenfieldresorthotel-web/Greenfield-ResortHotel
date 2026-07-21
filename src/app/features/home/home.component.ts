@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       link: '/about'
     },
     {
-      image: '/images/rooms/5.jpg',
+      image: '/images/rooms/room24.jpeg',
       overline: 'Accommodations',
       title: 'Eight Deluxe Rooms',
       subtitle: 'Uniform 8 rooms — same layout and amenities on the 1st and 2nd floors.',
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       link: '/rooms'
     },
     {
-      image: 'assets/daypool.jpeg',
+      image: 'images/pool/poolover.jpeg',
       overline: 'Aquatic Escape',
       title: 'Refresh by the Pool',
       subtitle: 'Unwind in our inviting pools — the perfect way to enjoy sunny days in Bohol.',
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   protected readonly roomShowcaseImages = {
     hero: '/images/rooms/5.jpg',
-    thumbs: ['/images/rooms/3.jpg', '/images/rooms/4.jpg', '/images/rooms/6.jpg']
+    thumbs: ['/images/rooms/roomshower.jpeg', '/images/rooms/room24.jpeg', '/images/rooms/room25.jpeg']
   };
 
   protected readonly galleryPreview = [
