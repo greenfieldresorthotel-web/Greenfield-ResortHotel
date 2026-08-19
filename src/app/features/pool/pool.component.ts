@@ -13,7 +13,7 @@ import { CountUpDirective } from '../../shared/directives/count-up.directive';
 })
 export class PoolComponent {
   protected readonly features = [
-    { icon: 'straighten', title: '50-Metre Infinity Pool', description: 'Our flagship pool stretches 50 metres, cantilevered over the forest valley with a stunning infinity edge that dissolves into the horizon.' },
+    { icon: 'straighten', title: '50-Metre Infinity Pool', description: 'Our resort pool is a relaxing place to swim, cool off, and enjoy your stay.' },
     { icon: 'thermostat', title: 'Year-Round Heating', description: 'Maintained at a precise 29°C throughout the year, ensuring a perfect swim regardless of the season.' },
     { icon: 'beach_access', title: 'Pool Side Bar', description: 'Dishes & drinks served throughout the day.' },
   ];
