@@ -16,7 +16,7 @@ const SERVICES: ResortService[] = [
     id: 'pool',
     icon: 'pool',
     title: 'Swimming Pool',
-    description: 'Inviting pools for a refreshing dip — perfect for families and guests looking to unwind in the Bohol sunshine.',
+    description: 'Inviting pool for a refreshing dip — perfect for families and guests looking to unwind in the Bohol sunshine.',
     category: 'activities',
     featured: true
   },
@@ -82,22 +82,6 @@ const SERVICES: ResortService[] = [
 ];
 
 const PACKAGES: ResortPackage[] = [
-  {
-    id: 'family',
-    title: 'Family Getaway',
-    description: 'A relaxed package for families seeking pool time, good food, and quality time together.',
-    includes: ['2-night stay', 'Daily breakfast', 'Pool access', 'Free parking'],
-    priceFrom: 4500,
-    icon: 'family_restroom'
-  },
-  {
-    id: 'couple',
-    title: 'Romantic Escape',
-    description: 'Perfect for couples — quiet rooms, poolside evenings, and a peaceful Anda retreat.',
-    includes: ['2-night stay', 'Welcome drinks', 'Pool access', 'Late check-out (subject to availability)'],
-    priceFrom: 3800,
-    icon: 'favorite'
-  },
   {
     id: 'corporate',
     title: 'Team Building & Corporate',

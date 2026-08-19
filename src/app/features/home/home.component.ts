@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       image: 'images/pool/poolover.jpeg',
       overline: 'Aquatic Escape',
       title: 'Refresh by the Pool',
-      subtitle: 'Unwind in our inviting pools — the perfect way to enjoy sunny days in Bohol.',
+      subtitle: 'Unwind in our inviting pool — the perfect way to enjoy sunny days in Bohol.',
       cta: 'Discover the Pool',
       link: '/pool'
     },
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   protected readonly amenities = [
-    { icon: 'pool', title: 'Swimming Pool', description: 'Refreshing pools for families and guests looking to unwind under the Bohol sun.' },
+    { icon: 'pool', title: 'Swimming Pool', description: 'Refreshing pool for families and guests looking to unwind under the Bohol sun.' },
     { icon: 'restaurant', title: 'Restaurant & Bar', description: 'Filipino specialties and international dishes served throughout the day.' },
     { icon: 'room_service', title: 'Room Service', description: 'Meals and refreshments delivered to your room at your convenience.' },
     { icon: 'celebration', title: 'Events & Celebrations', description: 'Birthdays, reunions, and team gatherings with function space and catering.' },
