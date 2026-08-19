@@ -38,6 +38,12 @@ export class RestaurantComponent {
       id: 4,
       src: '/images/restaurant/Food%20Menu/menu4.jpg',
       alt: 'Green Field Restaurant food menu — page 4'
+    },
+    {
+      id: 5,
+      src: '/images/dining/beverage.jpeg',
+      alt: 'Green Field Restaurant food menu — page 4'
     }
+
   ];
 }
