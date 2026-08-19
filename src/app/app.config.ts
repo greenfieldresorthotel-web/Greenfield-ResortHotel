@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { routes } from './app.routes';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,11 +14,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
-      withRouterConfig({ onSameUrlNavigation: 'reload' })
+      withRouterConfig({ onSameUrlNavigation: 'reload' }),
     ),
-    provideHttpClient(
-      withInterceptors([loadingInterceptor, errorInterceptor])
-    ),
-    provideAnimationsAsync()
-  ]
+    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor])),
+    provideAnimationsAsync(),
+    provideClientHydration(withEventReplay()),
+  ],
 };
