@@ -39,7 +39,13 @@ export const RESORT_CONFIG = {
       icon: 'facebook',
       label: 'Facebook',
       href: 'https://www.facebook.com/profile.php?id=61578175839518'
+    },
+    {
+      icon: 'instagram',
+      label: 'Instagram',
+      href: 'https://www.instagram.com/greenfieldresorthotel'
     }
+    
   ] satisfies SocialLink[],
   directions: [
     {

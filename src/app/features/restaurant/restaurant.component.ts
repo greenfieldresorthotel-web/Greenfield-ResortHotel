@@ -39,11 +39,23 @@ export class RestaurantComponent {
       src: '/images/restaurant/Food%20Menu/menu4.jpg',
       alt: 'Green Field Restaurant food menu — page 4'
     },
+  ];
+  protected readonly beveragePages: MenuPageImage[] = [
     {
-      id: 5,
-      src: '/images/dining/beverage.jpeg',
-      alt: 'Green Field Restaurant food menu — page 4'
-    }
+      id: 1,
+      src: '/images/restaurant/Food%20Menu/bev1.jpeg',
+      alt: 'Green Field Restaurant beverages — refreshing drinks and cocktails'
+    },
+    {
+      id: 2,
+      src: '/images/restaurant/Food%20Menu/bev2.jpeg',
+      alt: 'Green Field Restaurant beverages — page 2'
+    },
+    {
+      id: 3,
+      src: '/images/restaurant/Food%20Menu/bev3.jpeg',
+      alt: 'Green Field Restaurant beverages — page 3'
+    },
 
   ];
 }

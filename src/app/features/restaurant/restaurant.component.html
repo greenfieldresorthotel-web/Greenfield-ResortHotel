@@ -34,7 +34,6 @@
 <section class="food-menu section-light">
   <div class="container">
     <div class="section-header" [appReveal]="0">
-      <span class="overline">Our Menu</span>
       <h2>Food Menu</h2>
       <hr class="divider">
       <p>Filipino favorites, sizzling specialties, noodles, rice platters, and more — served at Green Field Restaurant.</p>
@@ -48,6 +47,26 @@
       }
     </div>
   </div>
+  
+</section>
+
+<!-- Beverages -->
+<section class="food-menu section-light">
+  <div class="container">
+    <div class="section-header" [appReveal]="0">
+      <h2>Beverages</h2>
+      <hr class="divider">
+    </div>
+
+    <div class="menu-gallery">
+      @for (page of beveragePages; track page.id; let i = $index) {
+        <figure class="menu-card" [appReveal]="i" appRevealType="up">
+          <img [src]="page.src" [alt]="page.alt" loading="lazy" decoding="async" />
+        </figure>
+      }
+    </div>
+  </div>
+  
 </section>
 
 <!-- Hours & Reservation -->
