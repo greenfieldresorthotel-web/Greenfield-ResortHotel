@@ -24,7 +24,7 @@ export const RESORT_CONFIG = {
     line2: 'Anda, Bohol, Philippines',
     full: 'Purok 2, Casica, Anda, Bohol, Philippines'
   },
-  phone: '0939 422 0276',
+  phone: '(Smart)09692778655 / (Globe)09458940731',
   phoneHref: 'tel:+639394220276',
   email: 'greenfield.resorthotel@gmail.com',
   hours: '24 hours, 7 days a week',
@@ -43,7 +43,7 @@ export const RESORT_CONFIG = {
     {
       icon: 'instagram',
       label: 'Instagram',
-      href: 'https://www.instagram.com/greenfieldresorthotel'
+      href: 'https://www.instagram.com/greenfield_rh'
     }
     
   ] satisfies SocialLink[],
