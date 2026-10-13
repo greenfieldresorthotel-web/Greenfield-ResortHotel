@@ -1,4 +1,5 @@
-import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, PLATFORM_ID, SimpleChanges, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 /**
  * Animates the host element's text content counting up to a target number
@@ -12,6 +13,7 @@ import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChang
 })
 export class CountUpDirective implements OnInit, OnChanges, OnDestroy {
   private readonly el = inject(ElementRef<HTMLElement>);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private observer?: IntersectionObserver;
   private frame?: number;
   private hasRevealed = false;
@@ -34,6 +36,13 @@ export class CountUpDirective implements OnInit, OnChanges, OnDestroy {
   @Input() countUpGrouping = true;
 
   ngOnInit(): void {
+    if (!this.isBrowser) {
+      this.render(this.target);
+      this.currentValue = this.target;
+      this.hasRevealed = true;
+      return;
+    }
+
     if (typeof IntersectionObserver === 'undefined') {
       this.animateTo(this.target);
       this.hasRevealed = true;
@@ -58,14 +67,14 @@ export class CountUpDirective implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     const targetChange = changes['target'] ?? changes['appCountUp'];
-    if (targetChange && !targetChange.isFirstChange() && this.hasRevealed) {
+    if (this.isBrowser && targetChange && !targetChange.isFirstChange() && this.hasRevealed) {
       this.animateTo(this.target);
     }
   }
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
-    if (this.frame) cancelAnimationFrame(this.frame);
+    if (this.isBrowser && this.frame !== undefined) cancelAnimationFrame(this.frame);
   }
 
   private animateTo(target: number): void {
