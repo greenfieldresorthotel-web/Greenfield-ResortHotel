@@ -51,43 +51,6 @@ $bp-lg: 1024px;
   &__subtitle { font-family: $font-display; font-size: 1.2rem; color: rgba(255,255,255,0.8); font-style: italic; margin: 0; }
 }
 
-.about-stats {
-  background: linear-gradient(135deg, $dark-green 0%, $forest-green 100%);
-  padding: 44px 0;
-
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    text-align: center;
-
-    @media (min-width: $bp-md) { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  &__item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  &__value {
-    font-family: $font-display;
-    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-    font-weight: 700;
-    color: $gold;
-    line-height: 1;
-  }
-
-  &__label {
-    font-family: $font-body;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
-  }
-}
-
 .about-story {
   &__grid {
     display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;
