@@ -1,50 +1,20 @@
 <!-- ============================================================ -->
-<!-- HERO CAROUSEL -->
+<!-- HERO -->
 <!-- ============================================================ -->
-<section class="hero" [style.--hero-parallax.px]="heroParallax()">
-  @for (slide of heroSlides; track $index; let i = $index) {
-    <div class="hero__bg" [class.hero__bg--active]="activeSlide() === i">
-      <img [src]="slide.image" [alt]="slide.title" loading="eager" decoding="async" />
-    </div>
-  }
+<section class="hero">
+  <div class="hero__bg"></div>
   <div class="hero__overlay"></div>
-
   <div class="hero__content">
-    <div class="hero__logo-wrap animate-scale-in">
+    <div class="hero__logo-wrap">
       <img src="assets/Logo.jpg" alt="Greenfield Resort logo" class="hero-logo" />
     </div>
-
-    <div class="hero__slides">
-      @for (slide of heroSlides; track $index; let i = $index) {
-        <div class="hero__slide" [class.active]="activeSlide() === i" [attr.aria-hidden]="activeSlide() !== i">
-          <span class="hero__overline">{{ slide.overline }}</span>
-          <h1 class="hero__title">{{ slide.title }}</h1>
-          <hr class="hero__divider">
-          <p class="hero__subtitle">{{ slide.subtitle }}</p>
-        </div>
-      }
+    <br>
+    <div class="hero__actions">
+      <a routerLink="/about" class="btn btn-primary btn-lg">Discover Our Story</a>
     </div>
-
-    @for (idx of [activeSlide()]; track idx) {
-      <div class="hero__actions" animate.enter="hero-actions-enter">
-        <a [routerLink]="currentHeroSlide().link" class="btn btn-primary btn-lg hero__cta">
-          {{ currentHeroSlide().cta }}
-        </a>
-      </div>
-    }
   </div>
 
-  <div class="hero__indicators">
-    @for (slide of heroSlides; track $index; let i = $index) {
-      <button
-        class="hero__indicator"
-        [class.active]="activeSlide() === i"
-        (click)="goToSlide(i)"
-        [attr.aria-label]="'Go to slide ' + (i + 1)">
-      </button>
-    }
-  </div>
-
+  <!-- Scroll Prompt -->
   <div class="hero__scroll-hint">
     <span>Scroll</span>
     <div class="hero__scroll-line"></div>
@@ -57,9 +27,9 @@
 <section class="welcome section-light">
   <div class="container">
     <div class="welcome__grid">
-      <div class="welcome__content" [appReveal]="0" appRevealType="left">
+      <div class="welcome__content">
         <span class="overline">A World Apart</span>
-        <h2 class="welcome__title">Welcome to an Green Field Unlike Any Other</h2>
+        <h2 class="welcome__title">Welcome to an Greenfield Unlike Any Other</h2>
         <hr class="divider welcome__divider">
         <p class="welcome__text">
           We're excited to officially open our doors and invite you to experience the the warmth of home and promising an unforgettable stay for every guest.
@@ -67,12 +37,21 @@
 
         <a routerLink="/about" class="btn btn-dark welcome__btn">Our Story</a>
       </div>
-      <div class="welcome__images" [appReveal]="1" appRevealType="right">
+      <div class="welcome__images">
         <div class="welcome__img-main">
           <img src="assets/homepool.jpeg" alt="Home" loading="lazy">
         </div>
         <div class="welcome__img-secondary">
-          <img src="/images/BG/bg5.jpg" alt="Greenfield Resort grounds" loading="lazy">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+          >
+            <source
+              src="assets/Videos/Green%20fields%20Resort%20Hotel%20001.mp4%20.mp4"
+              type="video/mp4"
+            />
+          </video>
         </div>
       </div>
     </div>
@@ -84,80 +63,60 @@
 <!-- ============================================================ -->
 <section class="featured-rooms section">
   <div class="container">
-    <div class="section-header" [appReveal]="0">
+    <div class="section-header">
       <span class="overline">Our Accommodations</span>
-      <h2>Deluxe Room</h2>
+      <h2>Rooms</h2>
       <hr class="divider">
-      <p>Eight identical deluxe rooms (44 sqm) on the 1st and 2nd floors — same layout, same amenities, every stay.</p>
+      <p>We have a total of eight rooms that are very comfortable and have a nice ambiance.</p>
     </div>
 
-    @if (featuredRoom(); as room) {
-      <article class="room-showcase luxury-card" [appReveal]="0" appRevealType="up">
-        <div class="room-showcase__gallery">
-          <div class="room-showcase__hero">
-            <img [src]="roomShowcaseImages.hero" [alt]="room.name" loading="lazy">
-            @if (room.badge) {
-              <div class="room-showcase__badge">{{ room.badge }}</div>
-            }
-          </div>
-          <div class="room-showcase__thumbs">
-            @for (image of roomShowcaseImages.thumbs; track image) {
-              <img [src]="image" [alt]="room.name" loading="lazy">
-            }
-          </div>
-        </div>
-
-        <div class="room-showcase__content">
-          <span class="room-showcase__type">{{ room.typeLabel | uppercase }}</span>
-          <h3 class="room-showcase__title">{{ room.name }}</h3>
-          <p class="room-showcase__desc">{{ room.shortDescription }}</p>
-
-          <div class="room-showcase__stats">
-            <div class="room-showcase__stat">
-              <span class="room-showcase__stat-value">{{ room.quantity }}</span>
-              <span class="room-showcase__stat-label">Identical Rooms</span>
-            </div>
-            <div class="room-showcase__stat">
-              <span class="room-showcase__stat-value">{{ room.sizeSqm }} sqm</span>
-              <span class="room-showcase__stat-label">Room Size</span>
-            </div>
-            <div class="room-showcase__stat">
-              <span class="room-showcase__stat-value">{{ room.maxGuests }}</span>
-              <span class="room-showcase__stat-label">Max Guests</span>
-            </div>
-            <div class="room-showcase__stat">
-              <span class="room-showcase__stat-value">{{ room.floors }}</span>
-              <span class="room-showcase__stat-label">Floors</span>
+    <div class="rooms-grid">
+      @for (room of featuredRooms(); track room.id) {
+        <article class="room-card luxury-card">
+          <div class="room-card__image-wrap">
+            <img [src]="room.images[0]" [alt]="room.name" loading="lazy">
+            <div class="room-card__badge">
+              <mat-icon>star</mat-icon>
+              {{ room.rating }}
             </div>
           </div>
-
-          <div class="room-showcase__amenities">
-            @for (amenity of room.amenities.slice(0, 6); track amenity) {
-              <span class="room-showcase__amenity">{{ amenity }}</span>
-            }
-          </div>
-
-          <div class="room-showcase__footer">
-            <div class="room-showcase__price">
-              <span class="room-showcase__price-from">From</span>
-              <span class="room-showcase__price-amount">₱{{ room.price | number:'1.0-0' }}</span>
-              <span class="room-showcase__price-per">/ night</span>
-              @if (room.rateNote) {
-                <span class="room-showcase__price-note">{{ room.rateNote }}</span>
-              }
+          <div class="room-card__body">
+            <span class="room-card__type">{{ room.type | uppercase }}</span>
+            <h3 class="room-card__title">{{ room.name }}</h3>
+            <p class="room-card__desc">{{ room.shortDescription }}</p>
+            <div class="room-card__meta">
+              <span class="room-card__meta-item">
+                <mat-icon>person</mat-icon>
+                Up to {{ room.maxGuests }}
+              </span>
+              <span class="room-card__meta-item">
+                <mat-icon>straighten</mat-icon>
+                {{ room.size }} sq ft
+              </span>
+              <span class="room-card__meta-item">
+                <mat-icon>king_bed</mat-icon>
+                {{ room.bedType }}
+              </span>
             </div>
-            <div class="room-showcase__actions">
-              <a [routerLink]="['/rooms', room.id]" class="btn btn-outline-gold btn-sm">View Details</a>
-              <a routerLink="/contact" class="btn btn-primary btn-sm">Enquire Now</a>
+            <div class="room-card__footer">
+              <div class="room-card__price">
+                <span class="room-card__price-from">From</span>
+                <span class="room-card__price-amount">${{ room.price }}</span>
+                <span class="room-card__price-per">/ night</span>
+              </div>
+              <div class="room-card__actions">
+                <a [routerLink]="['/rooms', room.id]" class="btn btn-outline-gold btn-sm">Details</a>
+                <a [routerLink]="'/booking'" [queryParams]="{roomId: room.id}" class="btn btn-primary btn-sm">Book</a>
+              </div>
             </div>
           </div>
-        </div>
-      </article>
-    }
+        </article>
+      }
+    </div>
 
-    <div class="featured-rooms__cta" [appReveal]="0" appRevealType="scale">
-      <a [routerLink]="featuredRoom() ? ['/rooms', featuredRoom()!.id] : '/rooms'" class="btn btn-dark btn-lg">
-        View Room Details
+    <div class="featured-rooms__cta">
+      <a routerLink="/rooms" class="btn btn-dark btn-lg">
+        View All Rooms
         <mat-icon>arrow_forward</mat-icon>
       </a>
     </div>
@@ -169,15 +128,15 @@
 <!-- ============================================================ -->
 <section class="amenities section-dark">
   <div class="container">
-    <div class="section-header dark" [appReveal]="0">
+    <div class="section-header dark">
       <span class="overline">Estate Privileges</span>
-      <h2>Amenities</h2>
+      <h2>World-Class Amenities</h2>
       <hr class="divider">
-      <p>Comfortable rooms, refreshing pool, great food, and genuine Filipino hospitality — all in serene Anda, Bohol.</p>
+      <p>Every amenity at Greenfield has been conceived to enhance your connection with this remarkable landscape.</p>
     </div>
     <div class="amenities__grid">
-      @for (amenity of amenities; track amenity.title; let i = $index) {
-        <div class="amenity-card" [appReveal]="i" appRevealType="scale">
+      @for (amenity of amenities; track amenity.title) {
+        <div class="amenity-card">
           <div class="amenity-card__icon">
             <mat-icon>{{ amenity.icon }}</mat-icon>
           </div>
@@ -185,9 +144,6 @@
           <p class="amenity-card__desc">{{ amenity.description }}</p>
         </div>
       }
-    </div>
-    <div class="amenities__cta" [appReveal]="0" appRevealType="scale">
-      <a routerLink="/services" class="btn btn-primary">View All Services</a>
     </div>
   </div>
 </section>
@@ -198,25 +154,30 @@
 <section class="restaurant-preview section">
   <div class="container">
     <div class="restaurant-preview__grid">
-      <div class="restaurant-preview__image" [appReveal]="0" appRevealType="left">
-        <img src="/images/dining/dining3.jpg" alt="Green Field Restaurant" loading="lazy">
+      <div class="restaurant-preview__image">
+        <img src="https://picsum.photos/seed/restaurant-preview/800/600" alt="The Canopy Restaurant" loading="lazy">
         <div class="restaurant-preview__img-badge">
           <span>Best Sellers</span>
           <span>Cuisine</span>
         </div>
       </div>
-      <div class="restaurant-preview__content" [appReveal]="1" appRevealType="right">
+      <div class="restaurant-preview__content">
         <span class="overline">Comfortable Dining</span>
         <h2 class="restaurant-preview__title">The Bar & Restaurant</h2>
         <hr class="divider">
+        <p class="restaurant-preview__text">
+          Under the artistry of our executive chef, The Canopy Restaurant presents a culinary philosophy rooted
+          in the estate's own organic gardens and the finest global produce. Every dish tells a story of place,
+          season, and mastery.
+        </p>
         <p class="restaurant-preview__text restaurant-preview__text--mt">
-          Join us for breakfast, lunch, and dinner exclusively crafted
-          tasting menu paired with beverages from our bar & restaurant.
+          Join us for breakfast, lunch, and dinner, or reserve our private dining room for an exclusively crafted
+          tasting menu paired with wines from our curated cellar.
         </p>
         <div class="restaurant-preview__hours">
           <div class="restaurant-preview__hour-item">
             <span class="restaurant-preview__hour-label">Breakfast</span>
-            <span class="restaurant-preview__hour-time">7:30 – 10:30 AM</span>
+            <span class="restaurant-preview__hour-time">6:30 – 10:30 AM</span>
           </div>
           <div class="restaurant-preview__hour-item">
             <span class="restaurant-preview__hour-label">Lunch</span>
@@ -224,7 +185,7 @@
           </div>
           <div class="restaurant-preview__hour-item">
             <span class="restaurant-preview__hour-label">Dinner</span>
-            <span class="restaurant-preview__hour-time">6:00 – 10:00 PM</span>
+            <span class="restaurant-preview__hour-time">7:00 – 11:00 PM</span>
           </div>
         </div>
         <a routerLink="/restaurant" class="btn btn-primary">Explore The Menu</a>
@@ -239,15 +200,59 @@
 <section class="pool-preview">
   <div class="pool-preview__bg" style="background-image: url('assets/daypool.jpeg')">
     <div class="pool-preview__overlay"></div>
-    <div class="pool-preview__content" [appReveal]="0" appRevealType="scale">
+    <div class="pool-preview__content">
       <span class="overline">Aquatic Sanctuary</span>
       <h2 class="pool-preview__title">The Pool</h2>
       <hr class="divider pool-preview__divider">
       <p class="pool-preview__text">
-        A 50-metre heated  open year-round.
-        a poolside bar, and a terrace complete this liquid sanctuary.
+        A 50-metre heated infinity pool cantilevered over the forest valley, open year-round. Private cabanas,
+        a poolside bar, and a Jacuzzi terrace complete this liquid sanctuary.
       </p>
       <a routerLink="/pool" class="btn btn-secondary btn-lg">Discover the Pool</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- TESTIMONIALS -->
+<!-- ============================================================ -->
+<section class="testimonials section-light">
+  <div class="container">
+    <div class="section-header">
+      <span class="overline">Guest Voices</span>
+      <h2>Stories from Our Guests</h2>
+      <hr class="divider">
+    </div>
+    <div class="testimonials__slider">
+      @for (t of testimonials(); track t.id; let i = $index) {
+        <div class="testimonial-card" [class.active]="activeTestimonial() === i">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">{{ t.comment }}</p>
+          <div class="testimonial-card__stars">
+            @for (star of getRatingStars(t.rating); track star) {
+              <mat-icon>star</mat-icon>
+            }
+          </div>
+          <div class="testimonial-card__author">
+            <img [src]="t.avatar" [alt]="t.guestName" class="testimonial-card__avatar">
+            <div>
+              <div class="testimonial-card__name">{{ t.guestName }}</div>
+              <div class="testimonial-card__meta">{{ t.countryFlag }} {{ t.country }} · {{ t.roomType }}</div>
+              <div class="testimonial-card__date">{{ t.stayDate }}</div>
+            </div>
+          </div>
+        </div>
+      }
+      <div class="testimonials__dots">
+        @for (t of testimonials(); track t.id; let i = $index) {
+          <button
+            class="testimonials__dot"
+            [class.active]="activeTestimonial() === i"
+            (click)="goToTestimonial(i)"
+            [attr.aria-label]="'Go to testimonial ' + (i + 1)">
+          </button>
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -257,56 +262,37 @@
 <!-- ============================================================ -->
 <section class="gallery-preview section">
   <div class="container">
-    <div class="section-header" [appReveal]="0">
+    <div class="section-header">
       <span class="overline">Visual Stories</span>
       <h2>Gallery of Moments</h2>
       <hr class="divider">
     </div>
     <div class="gallery-preview__grid">
-      @for (photo of galleryPreview; track photo.src; let i = $index) {
-        <a
-          routerLink="/gallery"
-          class="gallery-preview__item"
-          [class.gallery-preview__item--large]="photo.featured"
-          [appReveal]="i"
-          appRevealType="scale">
-          <img [src]="photo.src" [alt]="photo.alt" loading="lazy">
-          <div class="gallery-preview__item-overlay">
-            <mat-icon>zoom_in</mat-icon>
-          </div>
-        </a>
-      }
+      <a routerLink="/gallery" class="gallery-preview__item gallery-preview__item--large">
+        <img src="https://picsum.photos/seed/gallery-p1/800/600" alt="Resort Gallery" loading="lazy">
+        <div class="gallery-preview__item-overlay">
+          <mat-icon>zoom_in</mat-icon>
+        </div>
+      </a>
+      <a routerLink="/gallery" class="gallery-preview__item">
+        <img src="https://picsum.photos/seed/gallery-p2/400/400" alt="Resort Gallery" loading="lazy">
+        <div class="gallery-preview__item-overlay"><mat-icon>zoom_in</mat-icon></div>
+      </a>
+      <a routerLink="/gallery" class="gallery-preview__item">
+        <img src="https://picsum.photos/seed/gallery-p3/400/400" alt="Resort Gallery" loading="lazy">
+        <div class="gallery-preview__item-overlay"><mat-icon>zoom_in</mat-icon></div>
+      </a>
+      <a routerLink="/gallery" class="gallery-preview__item">
+        <img src="https://picsum.photos/seed/gallery-p4/400/400" alt="Resort Gallery" loading="lazy">
+        <div class="gallery-preview__item-overlay"><mat-icon>zoom_in</mat-icon></div>
+      </a>
+      <a routerLink="/gallery" class="gallery-preview__item">
+        <img src="https://picsum.photos/seed/gallery-p5/400/400" alt="Resort Gallery" loading="lazy">
+        <div class="gallery-preview__item-overlay"><mat-icon>zoom_in</mat-icon></div>
+      </a>
     </div>
     <div class="gallery-preview__cta">
       <a routerLink="/gallery" class="btn btn-outline-gold btn-lg">View Full Gallery</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- SOCIAL / FOLLOW US -->
-<!-- ============================================================ -->
-<section class="social-strip section-light">
-  <div class="container">
-    <div class="social-strip__inner" [appReveal]="0" appRevealType="scale">
-      <div class="social-strip__content">
-        <span class="overline">Stay Connected</span>
-        <h2 class="social-strip__title">Follow Us on Facebook</h2>
-        <p class="social-strip__text">See our latest photos, updates, and guest moments from Purok 2, Casica, Anda, Bohol.</p>
-      </div>
-      <div class="social-strip__links">
-        @for (link of socialLinks; track link.label) {
-          <a
-            [href]="link.href"
-            class="social-strip__link"
-            [attr.aria-label]="link.label"
-            target="_blank"
-            rel="noopener noreferrer">
-            <mat-icon>{{ link.icon }}</mat-icon>
-            <span>{{ link.label }}</span>
-          </a>
-        }
-      </div>
     </div>
   </div>
 </section>
@@ -317,7 +303,7 @@
 <section class="cta-banner">
   <div class="cta-banner__bg">
     <div class="cta-banner__overlay"></div>
-    <div class="cta-banner__content" [appReveal]="0" appRevealType="scale">
+    <div class="cta-banner__content">
       <span class="overline">Begin Your Journey</span>
       <h2 class="cta-banner__title">Your Extraordinary Stay Awaits</h2>
       <p class="cta-banner__text">Reserve your place now</p>
