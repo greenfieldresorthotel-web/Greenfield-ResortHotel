@@ -542,7 +542,6 @@ $bp-sm: 480px;
 // ============================================================
 .welcome {
   background-color: $cream;
-  margin-top: 0;
 
   &__grid {
     display: grid;
@@ -592,7 +591,7 @@ $bp-sm: 480px;
 
     &:hover {
       .welcome__img-main img { transform: scale(1.06); }
-      .welcome__img-secondary img { transform: scale(1.08); }
+      .welcome__img-secondary video { transform: scale(1.08); }
     }
   }
 
@@ -605,34 +604,26 @@ $bp-sm: 480px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: $shadow-xl;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    img { width: 100%; height: 100%; object-fit: cover; }
   }
 
   &__img-secondary {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 55%;
-    height: 45%;
+    width: 65%;
+    height: 55%;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: $shadow-xl;
     border: 4px solid $cream;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    animation: welcomeImgFloat 7s ease-in-out infinite;
 
     @media (prefers-reduced-motion: reduce) {
       animation: none;
     }
 
-    img {
+    video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -669,7 +660,6 @@ $bp-sm: 480px;
     text-transform: uppercase;
   }
 }
-
 @keyframes welcomeImgFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
